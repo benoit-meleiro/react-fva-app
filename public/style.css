@@ -221,7 +221,8 @@ hr {
   border-radius: 1rem;
 }
 
-/*! switch button CRENEAU */
+/*! switch button CRENEAU - INTERCLUBS */
+/* !COMMUN */
 .switch {
   position: relative;
   display: inline-block;
@@ -232,73 +233,6 @@ hr {
 /* Hide default HTML checkbox */
 .switch input {
   display: none;
-}
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--fvaRouge);
-  -webkit-transition: .4s;
-  transition: .4s;
-  box-shadow: none;
-}
-.slider-cap {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--fvaRouge);
-  -webkit-transition: .4s;
-  transition: .4s;
-  box-shadow: none;
-}
-.slider:before {
-  position: absolute;
-  content: url("/assets/img/aquaponey.svg");
-  height: 15px;
-  width: 15px;
-  left: 5px;
-  bottom: 35px;
-  -webkit-transition: 1s;
-  transition: 1s;
-}
-.slider-cap:before {
-  position: absolute;
-  content: url("/assets/img/fva-invisible.svg");
-  height: 15px;
-  width: 15px;
-  left: 5px;
-  bottom: 35px;
-  -webkit-transition: 1s;
-  transition: 1s;
-}
-input:checked + .slider {
-  background-color: var(--fvaVert);
-  
-}
-input:checked + .slider-cap {
-  background-color: var(--fvaVert);
-  
-}
-input:checked + .slider:before {
-  content: url("/assets/img/fva-raquette-blanche.svg");
-  left: 150px;
-  right: 0px;
-  -webkit-transition: 1s;
-  transition: 1s;
-}
-input:checked + .slider-cap:before {
-  content: url("/assets/img/fva-ninja.svg");
-  left: 150px;
-  right: 0px;
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 .text:after {
   cursor: pointer;
@@ -322,6 +256,76 @@ input:checked ~ .text:after {
   margin-right: 38px;
   margin-left: 8px;
 }
+
+/** CRENEAUX */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--fvaRouge);
+  -webkit-transition: .4s;
+  transition: .4s;
+  box-shadow: none;
+}
+
+.slider:before {
+  position: absolute;
+  content: url("img/aquaponey.svg");
+  height: 15px;
+  width: 15px;
+  left: 5px;
+  bottom: 35px;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+input:checked + .slider {
+  background-color: var(--fvaVert);
+}
+input:checked + .slider:before {
+  content: url("/img/fva-raquette-blanche.svg");
+  left: 150px;
+  right: 0px;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+/* ? INTERCLUBS */
+
+.slider-cap {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--fvaRouge);
+  -webkit-transition: .4s;
+  transition: .4s;
+  box-shadow: none;
+}
+.slider-cap:before {
+  position: absolute;
+  content: url("/img/fva-invisible.svg");
+  height: 15px;
+  width: 15px;
+  left: 5px;
+  bottom: 35px;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+  input:checked + .slider-cap {
+  background-color: var(--fvaVert);
+}
+input:checked + .slider-cap:before {
+  content: url("/img/fva-ninja.svg");
+  left: 150px;
+  right: 0px;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
 /*! FIN SWITCH BUTTON */
 /* ++++++++++++++++++++++++++++++++++ CRENEAUX DE BAD ++++++++++++++++++++++++++++ */
 .creneau-de-bad-closed { display: flex;
@@ -415,105 +419,8 @@ nav{
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.p-anim{
-  font-family: 'showcard-gothic-regular',Arial, Helvetica, sans-serif ;
-  position: absolute;
-  transform: translate(-50%, -50%);
-}
-.p-anim:first-of-type{
-  top: 57.1%;
-  left: 43.4%;
-  font-size:27px;
-  color: black;
-}
-.p-anim:nth-of-type(2) {
-  top: 64%;
-  left: 42.81%;
-  font-size:45px;
-  color: var(--fvaRouge)
-}
-.p-anim:nth-of-type(3) {
-  top: 64%;
-  left: 47.95%;
-  font-size:45px;
-  color: black;
-}
-.p-anim:nth-of-type(3) span {
-  font-size:27px !important;
-  color: black;
-}
-.p-anim:nth-of-type(4) {
-  top: 71.5%;
-  left: 43%;
-  font-size:45px;
-  color:  var(--fvaRouge);
-}
-.p-anim:nth-of-type(5) {
-  top: 71.5%;
-  left: 48.5%;
-  font-size:45px;
-  color:  black;
-}
-.p-anim:nth-of-type(6) {
-  top: 79.1%;
-  left: 42.9%;
-  font-size:45px;
-  color:  var(--fvaRouge);
-}
-.p-anim:nth-of-type(7) {
-  top: 79.1%;
-  left: 51.5%;
-  font-size:45px;
-  color:  black;
-}
-/* ----- ETIQUETTES EVENT ACCUEIL ----- */
-.etiquette{
-  margin: 10px;
-  height: 180px;
-}
-.Tournoi {
-  border: solid 2px var(--fvaVert);
-  background-color: var(--fvaVert);
-  color:var(--fvaVert)
-}
-.Tournoi .dateEvt::before{
-  content:url(../img/fva-raquette-blanche.svg);
-}
-.Repas {
-  border: solid 2px var(--fvaOrange);
-  background-color: var(--fvaOrange);
-  color:var(--fvaOrange)
-}
-.Repas .dateEvt::before{
-  content:url(../img/evt-fva-repas.svg);
-}
-.Jeux {
-  border: solid 2px var(--fvaBleu);
-  background-color: var(--fvaBleu);
-  color:var(--fvaBleu)
-}
-.Jeux .dateEvt::before{
-  content:url(../img/evt-fva-jeu.svg);
-}
-.Reunion {
-  border: solid 2px var(--fvaRouge);
-  background-color: var(--fvaRouge);
-  color:var(--fvaRouge)
-}
-.Reunion .dateEvt::before{
-  content:url(../img/evt-fva-reunion.svg);
-}
-.Closed {
-  border: solid 2px var(--fvaGris);
-  background-color: var(--fvaGris);
-  color:var(--fvaGris)
-}
-.Closed .dateEvt::before{
-  content:url(../img/evt-fva-closed.svg);
-}
-.lh-65 {
-  line-height: 65px;
-}
+
+
 /* +++++++++++ PARTENAIRES SCROLL +++++++++++ */
 /* CONTAINER-SCROLL */  
 
