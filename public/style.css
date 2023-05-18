@@ -1,0 +1,642 @@
+*, ::before, ::after, p {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+  @font-face {
+    font-family:'showcard-gothic-regular';
+    src: url(/font/SHOWG.TTF);
+  }
+  :root {
+    --fvaRouge: #f62a15;
+    --fvaRougeClair: #FF7C6E;
+    --fvaOrange: #F68315;
+    --fvaOrangeClair: #FFB56E;
+    --fvaVert: #10BA35;
+    --fvaVertClair: #5AD175;
+    --fvaBleu: #108297;
+    --fvaBleuClair: #51A6B6;
+    --fvaGris: #B9BAC5;
+    --fvaGrisClair: #E2E2E5;
+    --fvaSizeXl: 36px;
+    --fvaSizeL: 27px;
+    --fvaSizeM: 22px;
+    --fvaSizeS: 18px;
+    --favSizeXs: 16px;
+    --fvaBorder: solid 2px;
+}
+body{
+  font-family: 'roboto', Arial, Helvetica, sans-serif;
+}
+/* ----------- LES TITRES BASIQUES ----------- */
+h1{
+  color: var(--fvaRouge);
+  font-size: var(--fvaSizeXl);
+  font-weight: bold;
+font-family: 'showcard-gothic-regular', arial;
+letter-spacing: 3px; 
+}
+h2{
+  font-size: var(--fvaSizeL);
+  font-weight: bold;
+  margin: 1rem 0 0.2rem 0;
+}
+h3{
+  font-size: var(--fvaSizeM);
+  font-weight: bold;
+}
+h4{
+  font-size: var(--fvaSizeS);
+  font-weight: bold;
+}
+hr {
+  height: 4px;
+  margin:0 0 1.5rem 0;
+  opacity: 1;
+  max-width: 350px;
+  background: linear-gradient(90deg, rgba(246,42,21,1) 0%, rgba(246,42,21,0) 100%);
+  border: none;
+}
+
+/* ---------- TEXTE COLOR FVA ---------- */
+.color-fvaRouge {
+  color: var(--fvaRouge)
+}
+.color-fvaBleu {
+  color: var(--fvaBleu)
+}
+.color-fvaVert {
+  color: var(--fvaVert)
+}
+.color-fvaOrange {
+  color: var(--fvaOrange)
+}
+.color-fvaGris {
+  color: var(--fvaGris)
+}
+/* ----------- BORDER PHOTOS JOUEURS ----------- */
+.border-fva-rouge{
+  border: var(--fvaBorder) var(--fvaRouge)
+}
+.border-fva-bleu{
+  border:var(--fvaBorder) var(--fvaBleu)
+}
+.border-fva-vert{
+  border:var(--fvaBorder) var(--fvaVert)
+}
+.border-fva-orange{
+  border:var(--fvaBorder) var(--fvaOrange)
+}
+.border-fva-gris{
+  border:var(--fvaBorder) var(--fvaGris)
+}
+
+/* ----------- LES BACKGROUNDS ----------- */
+.bg-fva-terrain {
+  /* position: relative; */
+  background-image: url("../img/terrain-fva.png");
+  background-size: 100% 100%;
+}
+.bg-fva-rouge{
+  background-color: var(--fvaRougeClair);
+}
+.bg-fva-rouge-f{
+  background-color: var(--fvaRouge);
+}
+.bg-fva-bleu{
+  background-color: var(--fvaBleuClair);
+}
+.bg-fva-bleu-f{
+  background-color: var(--fvaBleu);
+}
+.bg-fva-vert{
+  background-color: var(--fvaVertClair);
+}
+.bg-fva-orange{
+  background-color: var(--fvaOrangeClair);
+}
+.bg-fva-gris{
+  background-color: var(--fvaGrisClair);
+}
+.bg-fva-gris-f{
+  background-color: var(--fvaGris);
+}
+
+/* ----------- LES BOUTONS ----------- */
+.btn-fva-rouge{
+  display: block;
+  width: 85%;
+  margin:auto;
+  text-transform: uppercase;
+  background-color: var(--fvaRouge);
+  font-weight: 600;
+  color: white !important;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 1rem;
+}
+.btn-fva-rouge-petit{
+  display: block;
+  width: 100px;
+  
+  background-color: var(--fvaRouge);
+  color: white !important;
+  padding: 0.1rem 0.2rem;
+  border-radius: 1rem;
+}
+.btn-fva-rouge-petit:hover{
+  display: block;
+  width: 100px;
+  
+  background-color: var(--fvaRouge);
+  color: white !important;
+  padding: 0.1rem 0.2rem;
+  border-radius: 1rem;
+}
+.btn-fva-rouge:hover{
+  display: block;
+  width: 85%;
+  margin:auto;
+  text-transform: uppercase;
+  background-color: var(--fvaRougeClair);
+  font-weight: 600;
+  color: white !important;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 1rem;
+}
+.btn-fva-vert{
+  display: block;
+  width: 85%;
+  margin:auto;
+  text-transform: uppercase;
+  background-color: var(--fvaVertClair);
+  font-weight: 600;
+  color: white !important;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 1rem;
+}
+.btn-fva-vert:hover{
+  display: block;
+  width: 85%;
+  margin:auto;
+  text-transform: uppercase;
+  background-color: var(--fvaVert);
+  font-weight: 600;
+  color: white !important;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 1rem;
+}
+.btn-fva-orange{
+  display: block;
+  width: 85%;
+  margin:auto;
+  text-transform: uppercase;
+  background-color: var(--fvaOrangeClair);
+  font-weight: 600;
+  color: white !important;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 1rem;
+}
+.btn-fva-orange:hover{
+  display: block;
+  width: 85%;
+  margin:auto;
+  text-transform: uppercase;
+  background-color: var(--fvaOrange);
+  font-weight: 600;
+  color: white !important;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 1rem;
+}
+
+/*! switch button CRENEAU */
+.switch {
+  position: relative;
+  display: inline-block;
+  height: 50px;
+  width:200px;
+  margin-bottom: 15px;
+}
+/* Hide default HTML checkbox */
+.switch input {
+  display: none;
+}
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--fvaRouge);
+  -webkit-transition: .4s;
+  transition: .4s;
+  box-shadow: none;
+}
+.slider-cap {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--fvaRouge);
+  -webkit-transition: .4s;
+  transition: .4s;
+  box-shadow: none;
+}
+.slider:before {
+  position: absolute;
+  content: url("/assets/img/aquaponey.svg");
+  height: 15px;
+  width: 15px;
+  left: 5px;
+  bottom: 35px;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+.slider-cap:before {
+  position: absolute;
+  content: url("/assets/img/fva-invisible.svg");
+  height: 15px;
+  width: 15px;
+  left: 5px;
+  bottom: 35px;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+input:checked + .slider {
+  background-color: var(--fvaVert);
+  
+}
+input:checked + .slider-cap {
+  background-color: var(--fvaVert);
+  
+}
+input:checked + .slider:before {
+  content: url("/assets/img/fva-raquette-blanche.svg");
+  left: 150px;
+  right: 0px;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+input:checked + .slider-cap:before {
+  content: url("/assets/img/fva-ninja.svg");
+  left: 150px;
+  right: 0px;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+.text:after {
+  cursor: pointer;
+  content: attr(data-unchecked-text);
+  color: white;
+  font-weight:bold;
+  display: block;
+  position: relative;
+  line-height: 45px;
+  margin-left: 50px;
+  margin-right: 0px;
+  text-align: center;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+input:checked ~ .text:after {
+  content: attr(data-checked-text);
+  color: #fff;
+  -webkit-transition: .4s;
+  transition: .4s;
+  margin-right: 38px;
+  margin-left: 8px;
+}
+/*! FIN SWITCH BUTTON */
+/* ++++++++++++++++++++++++++++++++++ CRENEAUX DE BAD ++++++++++++++++++++++++++++ */
+.creneau-de-bad-closed { display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height:800px;
+}
+.creneau-de-bad {
+  min-height:800px;
+}
+.joueur-dispo-creneaux p{
+  font-size: 14px;
+}
+
+/* CAPITAINE INTER */
+
+.team-player-select{
+  background-color: var(--fvaBleuClair);
+  color: white;
+  border: none;
+  padding: 2px;
+  font-weight: 600;
+  min-width: 115px;
+}
+.team-player-select:focus-visible{
+  outline: 0;
+  border: none;
+}
+
+
+/* ----------- AUTRES BASIQUES ----------- */
+p{
+  font-size: var(--fvaSizeS);
+}
+li{
+  list-style: none;
+}
+.separator{
+  height: 28px;
+}
+.mt-10{
+  margin-top: -10px;
+}
+/* ----------- LIENS VERS PAGE ----------- */
+.lien-ad {
+  color: var(--fvaRouge);
+  font-size: var(--fvaSizeM);
+  font-weight: bold;
+  text-decoration: none;
+}
+.lien-ad img{
+  margin: 0 15px 0 0;
+  transform: rotate(225deg);
+}
+.mailbad{
+  width:100%;
+  object-fit: cover;
+    object-position: center;
+}
+
+nav{
+  border-bottom: solid 3px var(--fvaRouge);
+  background-color: white;
+}
+.nav-link{
+  font-size: var(--fvaSizeS);
+  line-height: 2.5rem;
+}
+.nav-link:last-of-type {
+  line-height: 0rem;
+}
+.container-fluid{
+  max-width: 1536px;
+}
+.img-une-accueil{
+  height: 70vh; 
+  max-height:500px;
+  
+  overflow: hidden;
+  position:relative
+}
+.img-fond{
+  max-width: 100%;
+  position: absolute;
+}
+.img-logo{
+  max-width: 300px;
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.p-anim{
+  font-family: 'showcard-gothic-regular',Arial, Helvetica, sans-serif ;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.p-anim:first-of-type{
+  top: 57.1%;
+  left: 43.4%;
+  font-size:27px;
+  color: black;
+}
+.p-anim:nth-of-type(2) {
+  top: 64%;
+  left: 42.81%;
+  font-size:45px;
+  color: var(--fvaRouge)
+}
+.p-anim:nth-of-type(3) {
+  top: 64%;
+  left: 47.95%;
+  font-size:45px;
+  color: black;
+}
+.p-anim:nth-of-type(3) span {
+  font-size:27px !important;
+  color: black;
+}
+.p-anim:nth-of-type(4) {
+  top: 71.5%;
+  left: 43%;
+  font-size:45px;
+  color:  var(--fvaRouge);
+}
+.p-anim:nth-of-type(5) {
+  top: 71.5%;
+  left: 48.5%;
+  font-size:45px;
+  color:  black;
+}
+.p-anim:nth-of-type(6) {
+  top: 79.1%;
+  left: 42.9%;
+  font-size:45px;
+  color:  var(--fvaRouge);
+}
+.p-anim:nth-of-type(7) {
+  top: 79.1%;
+  left: 51.5%;
+  font-size:45px;
+  color:  black;
+}
+/* ----- ETIQUETTES EVENT ACCUEIL ----- */
+.etiquette{
+  margin: 10px;
+  height: 180px;
+}
+.Tournoi {
+  border: solid 2px var(--fvaVert);
+  background-color: var(--fvaVert);
+  color:var(--fvaVert)
+}
+.Tournoi .dateEvt::before{
+  content:url(../img/fva-raquette-blanche.svg);
+}
+.Repas {
+  border: solid 2px var(--fvaOrange);
+  background-color: var(--fvaOrange);
+  color:var(--fvaOrange)
+}
+.Repas .dateEvt::before{
+  content:url(../img/evt-fva-repas.svg);
+}
+.Jeux {
+  border: solid 2px var(--fvaBleu);
+  background-color: var(--fvaBleu);
+  color:var(--fvaBleu)
+}
+.Jeux .dateEvt::before{
+  content:url(../img/evt-fva-jeu.svg);
+}
+.Reunion {
+  border: solid 2px var(--fvaRouge);
+  background-color: var(--fvaRouge);
+  color:var(--fvaRouge)
+}
+.Reunion .dateEvt::before{
+  content:url(../img/evt-fva-reunion.svg);
+}
+.Closed {
+  border: solid 2px var(--fvaGris);
+  background-color: var(--fvaGris);
+  color:var(--fvaGris)
+}
+.Closed .dateEvt::before{
+  content:url(../img/evt-fva-closed.svg);
+}
+.lh-65 {
+  line-height: 65px;
+}
+/* +++++++++++ PARTENAIRES SCROLL +++++++++++ */
+/* CONTAINER-SCROLL */  
+
+/* CONTAINER BANDE LOGOS */
+.container-band-logos {
+  display: flex;
+  width: 150%;
+  animation: logoscroll 40s linear infinite;
+}
+/* @media only screen and (max-width:900px) {
+  .container-band-logos {
+    width:900%
+  }
+} */
+/* BANDE LOGOS */
+.container-band-logos {
+  width:300%
+}
+.bande-logos {
+  display: flex;
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+.bande-logos li {
+  width: 100%;
+  }
+.bande-logos img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
+@keyframes logoscroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+/* SEANCE ESSAIS & INVITATIONS */
+.essais{
+  height: 120px;
+  align-items: center;
+  margin: 0 10px 10px 0;
+
+}
+.essais::after{ content : "➧";
+  font-size : 60px;
+  color: white;
+ }
+.essais:nth-child(4)::after{
+  content:"" !important
+  }
+ /* ACCORDIONS */
+ .accordion-button:focus {
+  z-index: 3;
+  border-color: none !important;
+  outline: 0;
+  box-shadow: 0 0 0 0rem rgba(255, 255, 255, 0); 
+}
+.accordion-button:not(.collapsed) {
+  
+  background-color: var(--fvaGrisClair);
+}
+
+
+/* +++++++++++++++++++++++++++++++++++++++ MEDIA QUERIES +++++++++++++++++++++++++++++++++++++++ */
+@media screen and (max-width: 768px) { 
+.img-une-accueil{
+  height: 70vh;
+  max-height:400px;
+}
+.img-logo{
+  max-width: 250px;
+}
+.essais{
+  min-height: 100px;
+  height: 120px !important;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+.essais::after{ content : "➧";
+  font-size : 50px;
+  color: white;
+  position:absolute;
+  bottom:-15px;
+  right:45%;
+  transform: rotate(90deg);
+}
+}
+
+@media screen and (max-width:576px) {
+.img-une-accueil{ 
+  height: 70vh;
+  max-height:300px;  
+}
+.img-logo{
+  max-width: 200px;
+}
+.container-band-logos {
+  width:700%
+}
+.essais{
+  min-height: 100px;
+  height: 120px !important;
+  margin-bottom: 10px;
+ 
+}
+
+.essais::after{ content : "➧";
+  font-size : 50px;
+  color: white;
+  position:absolute;
+  bottom:-15px;
+  right:45%;
+  transform: rotate(90deg);
+}
+
+}
+
+
+
+
