@@ -340,6 +340,9 @@ input:checked + .slider-cap:before {
 .creneau-de-bad {
   min-height:800px;
 }
+.creneau-de-badInter {
+  min-height:650px;
+}
 .joueur-dispo-creneaux p{
   font-size: 14px;
 }

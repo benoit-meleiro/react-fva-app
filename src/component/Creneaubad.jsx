@@ -2,65 +2,70 @@ import React from "react";
 // import { Link } from "react-router-dom";
 
 
-const Creneaubad = () => {
+const Creneaubad = ({creneau}) => {
+
+  const formatDate = (dateString) => {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString('fr-FR', options);
+  };
+  const GymnaseSession = (dayOfWeek) => {
+    if (dayOfWeek === 'lun' || dayOfWeek === 'mar') {
+      return 'Gymnase G Tillion 21h - 23h';
+    } 
+    if (dayOfWeek === 'mer') {
+      return 'Gymnase G Tillion 20h30 - 22h30';
+    } 
+    if (dayOfWeek === 'jeu') {
+      return 'Gymnase P Denis 21h - 23h';
+    }  
+    else {
+       return 'Gymnase P Denis 19h - 21h';
+    }
+  };
+const dayOfWeek = formatDate(creneau.dateSession).substring(0, 3); // Récupère le jour de la semaine en 3 caractères
+const terrainDispo = (dayOfWeek) => {
+    if (creneau.matchsInterclubs == true && dayOfWeek === 'lun' || creneau.matchsInterclubs == true &&dayOfWeek === 'mar' || creneau.matchsInterclubs == true &&dayOfWeek === 'mer'){
+        return `4`
+    }
+    if (creneau.matchsInterclubs == false && dayOfWeek === 'lun' || dayOfWeek === 'mar' || dayOfWeek === 'mer'){
+      return `7`
+  }
+  if (dayOfWeek === 'jeu' || dayOfWeek === 'ven'){
+    return `5`
+}
+
+
+}  
   return (
-    <div class="creneau-de-bad col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5 bg-fva-vert bg-fva-terrain">
-            <h2 class="text-white text-center">LUNDI 10 AVRIL</h2>
-            <div class="d-flex align-items-center justify-content-center">
-              <img src="/img/bureau-fva-jlp.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline align-text-top rounded-pill mx-3"/>
-              <p class="d-inline text-white"><span class="fw-bold">Jean-Luc </span> est le responsable de cette session</p>
+    <div key={creneau.id} className="creneau-de-bad col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5 bg-fva-vert bg-fva-terrain">
+            {/* <h2 className="text-white text-center">{creneau.jourSession}{creneau.dateSession}</h2> */}
+            <h2 className="text-white text-center text-uppercase ">{formatDate(creneau.dateSession)}</h2>
+            <div className="d-flex align-items-center justify-content-center">
+              <img src={`/img/${creneau.nomResponsableOuverture}_${creneau.prenomResponsableOuverture}.jpg`} alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline align-text-top rounded-pill mx-3"/>
+              <p className="d-inline text-white"><span className="fw-bold">{creneau.nomResponsableOuverture}</span> est le responsable de cette session</p>
+              {/* <p className="d-inline text-white"><span className="fw-bold">{creneau.nomResponsableOuverture}</span> est le responsable de cette session</p> */}
             </div>
-            <p class="text-white fw-normal text-center">Gymnase G tillon 21h - 23h</p>
-            <div class="separator"></div>
-            <div class="d-flex flex-row text-white justify-content-evenly align-items-center">
-              <p class="col-6 col-sm-5 col-md-5 col-lg-5 col-xl-5 text-center fs-4 fw-semibold lh-1"><span class="display-6 fw-bold">7</span> <br/>TERRAINS<br/>DISPONIBLES</p>
-              <p class="col-6 col-sm-5 col-md-5 col-lg-5 col-xl-5 text-center fs-4 fw-semibold lh-1"><span class="display-6 fw-bold">8</span><br/>JOUEURS<br/>INSCRITS</p>
+            <p className="text-white fw-normal text-center">{GymnaseSession(dayOfWeek)}</p>
+            <div className="separator"></div>
+            <div className="d-flex flex-row text-white justify-content-evenly align-items-center">
+              <p className="col-6 col-sm-5 col-md-5 col-lg-5 col-xl-5 text-center fs-4 fw-semibold lh-1"><span className="display-6 fw-bold">{terrainDispo(dayOfWeek)}</span> <br/>TERRAINS<br/>DISPONIBLES</p>
+              <p className="col-6 col-sm-5 col-md-5 col-lg-5 col-xl-5 text-center fs-4 fw-semibold lh-1"><span className="display-6 fw-bold">8</span><br/>JOUEURS<br/>INSCRITS</p>
             </div>
-            <div class="text-center mt-3">
-              <label class="switch">
+            <div className="text-center mt-3">
+              <label className="switch">
               <input type="checkbox"></input>
-              <span class="slider"></span>
-              <span class="text" data-checked-text="Ok je viens !" data-unchecked-text="J'ai Aqua Poney !"></span>
+              <span className="slider"></span>
+              <span className="text" data-checked-text="Ok je viens !" data-unchecked-text="J'ai Aqua Poney !"></span>
               </label>
             </div>
-            <h3 class="text-white text-center">QUI SERA LA ?</h3>
-            <div class="row justify-content-center text-white gap-1">
-              <div class="joueur-dispo-creneaux col-3 col-sm-2 col-md-2 col-lg-2 text-center mb-1">
-                <img src="/img/Oscar_Ibou.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill"/>
-                <p class=" mb-0 lh-1 fs-6 text-center">Oscar</p>
+            <h3 className="text-white text-center">QUI SERA LA ?</h3>
+            <div className="row justify-content-center text-white gap-1">
+              <div className="joueur-dispo-creneaux col-3 col-sm-2 col-md-2 col-lg-2 text-center mb-1">
+                <img src="/img/Oscar_Ibou.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline-block align-text-top rounded-pill"/>
+                <p className=" mb-0 lh-1 fs-6 text-center">Oscar</p>
               </div>
-              <div class="joueur-dispo-creneaux col-3 col-sm-2 col-md-2 col-lg-2 text-center mb-1">
-                <img src="/img/Sandy_Manche.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill"/>
-                <p class=" mb-0 lh-1 fs-6 text-center">Sandy</p>
-              </div>
-              <div class="joueur-dispo-creneaux col-3 col-sm-2 col-md-2 col-lg-2 text-center mb-1">
-                <img src="/img/Cecile_Anssieux.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                <p class=" mb-0 lh-1 fs-6 text-center">Cécile</p>
-              </div>
-              <div class="joueur-dispo-creneaux col-3 col-sm-2 col-md-2 col-lg-2 text-center mb-1">
-                <img src="/img/Franck_Fort.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                <p class=" mb-0 lh-1 fs-6 text-center">Franck</p>
-              </div>
-              <div class="joueur-dispo-creneaux col-3 col-sm-2 col-md-2 col-lg-2 text-center mb-1">
-                <img src="/img/Luc _Harne.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                <p class=" mb-0 lh-1 fs-6 text-center">Luc</p>
-              </div>
-              <div class="joueur-dispo-creneaux col-3 col-sm-2 col-md-2 col-lg-2 text-center mb-1">
-                <img src="/img/Sandra_Nicouette.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                <p class=" mb-0 lh-1 fs-6 text-center">Sandra</p>
-              </div>
-              <div class="joueur-dispo-creneaux col-3 col-sm-2 col-md-2 col-lg-2 text-center mb-1">
-                <img src="/img/Laurent_Bar.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                <p class=" mb-0 lh-1 fs-6 text-center">Laurent</p>
-              </div>
-              <div class="joueur-dispo-creneaux col-3 col-sm-2 col-md-2 col-lg-2 text-center mb-1">
-                <img src="/img/Lara_Clette.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                <p class=" mb-0 lh-1 fs-6 text-center">Lara</p>
-              </div>
-              <div class="joueur-dispo-creneaux col-3 col-sm-2 col-md-2 col-lg-2 text-center mb-1">
-                <img src="/img/Jim_Nastique.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                <p class=" mb-0 lh-1 fs-6 text-center">Jim</p>
-              </div>
+              
 
             </div>
           </div>
