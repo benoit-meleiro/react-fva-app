@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "../layout/Header";
-import Footer from "../layout/Footer";
+import Header from "../../layout/Header";
+import Footer from "../../layout/Footer";
 
 
 const Home = () => {return (
@@ -12,7 +12,7 @@ const Home = () => {return (
       <section>
         <div className="container-fluid px-0 py-0 mx-auto">
             <div className="img-une-accueil bg-light">
-                <img className="img-fond" src="img/cours-badminton-fva.jpg" alt="image de terrain de badminton à aussonne" />
+                <img className="img-fond" src="img/cours-badminton-fva.jpg" alt="de terrain de badminton à aussonne" />
                 <img className="img-logo" src="img/logo-fva-complet.svg" alt="Logo des fous du volant aussonnais" />
                 
                 
@@ -81,10 +81,12 @@ const Home = () => {return (
                 </div>
                 <div className="row justify-content-around">
                   <div className="col-12 col-lg-6 text-center">
-                    <a className="lien-ad" href=""><img src="/img/volant-rouge.svg" width="36" height="36" alt="volant de badminton en icone"/>J’adhère pour la saison 2023 / 2024</a>
+                  <Link className="lien-ad" to={`/adhesions`}><img src="/img/volant-rouge.svg" width="36" height="36" alt="volant de badminton en icone"/>J’adhère pour la saison 2023 / 2024</Link>
+                    
                   </div>
                   <div className="col-12 col-lg-6 text-center">
-                    <a className="lien-ad" href=""><img src="/img/volant-rouge.svg" width="36" height="36" alt="volant de badminton en icone"/>Je souhaite faire une session d'essai</a>
+                  <Link className="lien-ad" to={`/adhesions`}><img src="/img/volant-rouge.svg" width="36" height="36" alt="volant de badminton en icone"/>Je souhaite faire une session d'essai</Link>
+                    
                   </div>
                 </div>
               </div>
@@ -155,24 +157,24 @@ const Home = () => {return (
                 <article className="container-band-logos">
                   <div className="div-bande-logos">
                     <ul className="bande-logos">
-                      <li><img src="/img/partenaires-fva-aussonne.png"/></li>
-                      <li><img src="/img/partenaires-fva-codep31.png"/></li>
-                      <li><img src="/img/partenaires-fva-ffbad.png"/></li>
-                      <li><img src="/img/partenaires-fva-codepHG.png"/></li>
-                      <li><img src="/img/partenaires-fva-region-occitanie.png"/></li>
-                      <li><img src="/img/partenaires-fva-larde-sports.png"/></li>
-                      <li><img src="/img/partenaires-fva-sports-raquettes.png" /></li>
+                      <li><img src="/img/partenaires-fva-aussonne.png" alt="mairie Aussonne partenaire fva"/></li>
+                      <li><img src="/img/partenaires-fva-codep31.png" alt="comité 31  partenaire fva"/></li>
+                      <li><img src="/img/partenaires-fva-ffbad.png" alt="ffbad partenaire fva"/></li>
+                      <li><img src="/img/partenaires-fva-codepHG.png" alt="partenaire fva"/></li>
+                      <li><img src="/img/partenaires-fva-region-occitanie.png" alt="partenaire fva"/></li>
+                      <li><img src="/img/partenaires-fva-larde-sports.png" alt="partenaire fva"/></li>
+                      <li><img src="/img/partenaires-fva-sports-raquettes.png" alt="partenaire fva"/></li>
                       </ul>
                   </div>
                   <div className="div-bande-logos">
                     <ul className="bande-logos">
-                      <li><img src="/img/partenaires-fva-aussonne.png"/></li>
-                      <li><img src="/img/partenaires-fva-codep31.png"/></li>
-                      <li><img src="/img/partenaires-fva-ffbad.png"/></li>
-                      <li><img src="/img/partenaires-fva-codepHG.png"/></li>
-                      <li><img src="/img/partenaires-fva-region-occitanie.png"/></li>
-                      <li><img src="/img/partenaires-fva-larde-sports.png"/></li>
-                      <li><img src="/img/partenaires-fva-sports-raquettes.png"/></li>
+                      <li><img src="/img/partenaires-fva-aussonne.png" alt="partenaire fva"/></li>
+                      <li><img src="/img/partenaires-fva-codep31.png" alt="partenaire fva"/></li>
+                      <li><img src="/img/partenaires-fva-ffbad.png" alt="partenaire fva"/></li>
+                      <li><img src="/img/partenaires-fva-codepHG.png" alt="partenaire fva"/></li>
+                      <li><img src="/img/partenaires-fva-region-occitanie.png" alt="partenaire fva"/></li>
+                      <li><img src="/img/partenaires-fva-larde-sports.png" alt="partenaire fva"/></li>
+                      <li><img src="/img/partenaires-fva-sports-raquettes.png" alt="partenaire fva"/></li>
                       </ul>
                   </div>
                 </article>

@@ -113,6 +113,9 @@ hr {
 .bg-fva-vert{
   background-color: var(--fvaVertClair);
 }
+.bg-fva-vert-f{
+  background-color: var(--fvaVert);
+}
 .bg-fva-orange{
   background-color: var(--fvaOrangeClair);
 }
@@ -419,7 +422,54 @@ nav{
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
+/* ----- ETIQUETTES EVENT ACCUEIL ----- */
+.etiquette{
+  margin: 10px;
+  height: 180px;
+}
+.Tournoi {
+  border: solid 2px var(--fvaVert);
+  background-color: var(--fvaVert);
+  color:var(--fvaVert)
+}
+.Tournoi .dateEvt::before{
+  content:url(../img/fva-raquette-blanche.svg);
+}
+.Repas {
+  border: solid 2px var(--fvaOrange);
+  background-color: var(--fvaOrange);
+  color:var(--fvaOrange)
+}
+.Repas .dateEvt::before{
+  content:url(../img/evt-fva-repas.svg);
+}
+.Jeux {
+  border: solid 2px var(--fvaBleu);
+  background-color: var(--fvaBleu);
+  color:var(--fvaBleu)
+}
+.Jeux .dateEvt::before{
+  content:url(../img/evt-fva-jeu.svg);
+}
+.Reunion {
+  border: solid 2px var(--fvaRouge);
+  background-color: var(--fvaRouge);
+  color:var(--fvaRouge)
+}
+.Reunion .dateEvt::before{
+  content:url(../img/evt-fva-reunion.svg);
+}
+.Closed {
+  border: solid 2px var(--fvaGris);
+  background-color: var(--fvaGris);
+  color:var(--fvaGris)
+}
+.Closed .dateEvt::before{
+  content:url(../img/evt-fva-closed.svg);
+}
+.lh-65 {
+  line-height: 65px;
+}
 
 /* +++++++++++ PARTENAIRES SCROLL +++++++++++ */
 /* CONTAINER-SCROLL */  
