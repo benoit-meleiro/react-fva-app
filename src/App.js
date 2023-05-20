@@ -9,6 +9,7 @@ import Creneaux from "./pages/connect/Creneaux"
 import Dispointerclub from "./pages/connect/Dispointerclub"
 import Compointerclub from "./pages/connect/Compointerclub"
 import Playercrud from "./pages/connect/Playercrud"
+import Updateplayer from "./pages/connect/Updateplayer"
 import Creneauxcrud from "./pages/connect/Creneauxcrud"
 import Intercrud from "./pages/connect/Intercrud"
 
@@ -28,23 +29,11 @@ function App() {
         <Route path="/espace/dispointerclub" element={<Dispointerclub/>}/>
         <Route path="/espace/compointerclub" element={<Compointerclub/>}/>
         <Route path="/espace/admin/playercrud" element={<Playercrud/>}/>
+        <Route path="/espace/admin/players/:id/update" element={<Updateplayer/>}/>
+
         <Route path="/espace/admin/creneauxcrud" element={<Creneauxcrud/>}/>
         <Route path="/espace/admin/intercrud" element={<Intercrud/>}/>
-        {/* <Route path="/espace/compointerclub" element={<Compointerclub/>}/> */}
-
-
-        {/* <Route path="/coworkings" element={<CoworkingsList />} />
-        <Route path="/coworkings/:id" element={<CoworkingDetails />} /> */}
-
-        {/* 
-          je créé une page (route) avec le formulaire de connexion
-         */}
-        {/* <Route path="/login" element={<Login />} />
-
-        <Route path="/admin/coworkings" element={<CoworkingsList />} />
-        <Route path="/admin/create-coworking" element={<CreateCoworking />} />
-        <Route path="/admin/coworkings/:id" element={<CoworkingDetails />} />
-        <Route path="/admin/coworkings/:id/update" element={<UpdateCoworking />} /> */}
+        
       </Routes>
     </BrowserRouter>
   );

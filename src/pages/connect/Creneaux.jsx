@@ -6,7 +6,9 @@ import Menuconnex from "../../component/Menuconnex"
 import Creneaubad from "../../component/Creneaubad"
 import Creneaubadclosed from "../../component/Creneaubadclosed"
 import Deconnexion from "../../component/Deconnexion";
-//  import { Link, useNavigate } from "react-router-dom";
+
+
+
 const Creneaux = () => {
   // créé un state creneauxData pour pouvoir stocker les données récupérées
   // depuis l'API, à savoir la liste des creneaux
