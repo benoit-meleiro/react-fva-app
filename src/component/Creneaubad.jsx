@@ -1,8 +1,20 @@
-import React from "react";
-// import { Link } from "react-router-dom";
 
+// import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 
 const Creneaubad = ({creneau}) => {
+
+  const [presentsData, setpresentsData] = useState([]);
+useEffect(() => {
+  fetch(`http://localhost:3002/sessions/${creneau.id}/present`)
+    .then((presentsDataJson) => {
+      return presentsDataJson.json();
+    })
+    .then((presentsDataJs) => {
+      setpresentsData(presentsDataJs.data);
+      
+    });
+}, []);
 
   const formatDate = (dateString) => {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -50,7 +62,7 @@ const terrainDispo = (dayOfWeek) => {
             <div className="separator"></div>
             <div className="d-flex flex-row text-white justify-content-evenly align-items-center">
               <p className="col-6 col-sm-5 col-md-5 col-lg-5 col-xl-5 text-center fs-4 fw-semibold lh-1"><span className="display-6 fw-bold">{terrainDispo(dayOfWeek)}</span> <br/>TERRAINS<br/>DISPONIBLES</p>
-              <p className="col-6 col-sm-5 col-md-5 col-lg-5 col-xl-5 text-center fs-4 fw-semibold lh-1"><span className="display-6 fw-bold">8</span><br/>JOUEURS<br/>INSCRITS</p>
+              <p className="col-6 col-sm-5 col-md-5 col-lg-5 col-xl-5 text-center fs-4 fw-semibold lh-1"><span className="display-6 fw-bold">{presentsData.length}</span><br/>JOUEURS<br/>INSCRITS</p>
             </div>
             <div className="text-center mt-3">
               <label className="switch">
@@ -61,10 +73,19 @@ const terrainDispo = (dayOfWeek) => {
             </div>
             <h3 className="text-white text-center">QUI SERA LA ?</h3>
             <div className="row justify-content-center text-white gap-1">
-              <div className="joueur-dispo-creneaux col-3 col-sm-2 col-md-2 col-lg-2 text-center mb-1">
-                <img src="/img/Oscar_Ibou.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline-block align-text-top rounded-pill"/>
-                <p className=" mb-0 lh-1 fs-6 text-center">Oscar</p>
-              </div>
+
+          {presentsData.map((present) => (
+            
+  <div className="joueur-dispo-creneaux col-3 col-sm-2 col-md-2 col-lg-2 text-center mb-1">
+    <img src={`/img/${present.photos}`} alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline-block align-text-top rounded-pill" />
+    <p className="mb-0 lh-1 fs-6 text-center">{present.firstName}</p>
+  </div>
+))}
+
+
+
+
+              
               
 
             </div>

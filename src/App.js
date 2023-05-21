@@ -15,6 +15,8 @@ import Intercrud from "./pages/connect/Intercrud"
 
 
 
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -30,6 +32,7 @@ function App() {
         <Route path="/espace/compointerclub" element={<Compointerclub/>}/>
         <Route path="/espace/admin/playercrud" element={<Playercrud/>}/>
         <Route path="/espace/admin/players/:id/update" element={<Updateplayer/>}/>
+       
 
         <Route path="/espace/admin/creneauxcrud" element={<Creneauxcrud/>}/>
         <Route path="/espace/admin/intercrud" element={<Intercrud/>}/>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
@@ -9,10 +9,11 @@ import Menuconnex from "../../component/Menuconnex";
 
 
 
-const Updateplayer = () => {
 
-  
-  // je créé un state pour stocker un coworking
+const Updateplayer = () => {
+  const navigate = useNavigate();
+  const [isPlayerUpdated, setPlayerUpdated] = useState(false);
+  // je créé un state pour stocker un player
   const [player, setPlayer] = useState(null);
 
   // je récupère l'id présent dans l'url
@@ -45,12 +46,12 @@ const Updateplayer = () => {
     const lastName = event.target.lastName.value;
     const emailPlayer =  event.target.emailPlayer.value;
     const password =  event.target.password.value;
-    const man =  event.target.man.value;
+    const sexe =  event.target.sexe.value;
     const joueur_interclubs =  event.target.joueur_interclubs.value;
     const joueur_capitaine =  event.target.joueur_capitaine.value;
     const roles =  event.target.roles.value;
     const jour_ouverture =  event.target.jour_ouverture.value;
-    const photos = event.target.photos
+    const photos = event.target.photos.value
 
     // on fait un appel vers l'API (express)
     // on lui spécifie la méthode POST (pour créer)
@@ -65,25 +66,30 @@ const Updateplayer = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        firstName: firstName,
-        lastName: lastName,
-        emailPlayer: emailPlayer,
-        password: password,
-        man: man,
-        joueur_interclubs: joueur_interclubs,
-        joueur_capitaine: joueur_capitaine,
-        roles: roles,
-        jour_ouverture: jour_ouverture,
-        photos: photos
+        firstName,
+        lastName,
+        emailPlayer,
+        password,
+        sexe,
+        joueur_interclubs,
+        joueur_capitaine,
+        roles,
+        jour_ouverture,
+        photos,
         
       }),
-
+      
       // si l'api renvie une reponse 200
       // ça veut dire que tout s'est bien passé
       // alors on affiche un message dans la console
     }).then((response) => {
       if (response.status === 200) {
-        console.log("coworking modifié");
+        console.log("Player modifié");
+        setPlayerUpdated(true);
+        setTimeout(() => {
+          navigate("/espace/admin/playercrud");
+        }, 2000); // Redirige après 2 secondes
+        
         // sinon on affiche un message d'erreur
         // car cela veut dire que le coworking n'a pas été créé
       } else {
@@ -104,104 +110,58 @@ const Updateplayer = () => {
         <div className="separator"></div>
         <p className="text-center text-uppercase fw-bold ">CRéATION - MODIFICATION - SUPPRESSION DES JOUEURS</p>
         <div className="separator"></div>
-        <form className="row g-3">
+        <form onSubmit={handleSubmit} className="row g-3">
        
           <div className="row col-md-3 mb-3 me-2">
-          <label htmlFor="firstName">Prénom du joueur</label>
-          <input type="text" name="firstName" defaultValue={player.firstName} />
+          <label htmlFor="firstName" className="px-0">Prénom du joueur</label>
+          <input type="text" className="form-control" name="firstName" defaultValue={player?.firstName} />
           </div>
         
           <div className="row col-md-3 mb-3 me-2">
-          <label htmlFor="lastName">Prénom du joueur</label>
-          <input type="text" name="lastName" defaultValue={player.lastName} />
+          <label htmlFor="lastName" className="px-0">Nom du joueur</label>
+          <input type="text" className="form-control" name="lastName" defaultValue={player?.lastName} />
           </div>
-       
-          <div className="row col-md-3 mb-3 me-2 justify-content-around">
-            <label htmlFor="" className="px-0">Sexe</label>
-            <div className="col-auto">
-              <label className="form-check-label" htmlFor="flexRadioDefault1">
-                Masculin
-                </label>
-                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"checked/>
-            </div> 
-            <div className="col-auto">
-              <label className="form-check-label" htmlFor="flexRadioDefault2">
-                féminin
-              </label>
-              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"/>
-            </div> 
-          </div>
-        
+
+          <div className="row col-md-3 mb-3 me-2">
+          <label htmlFor="sexe" className="px-0">Sexe</label>
+          <input type="text" className="form-control" name="sexe" defaultValue={player?.sexe} />
+          </div>          
+                  
           <div className="row col-md-3 mb-3 me-2">
             <label htmlFor="emailJoueur" className="px-0">E-mail</label>
-            <input type="email" className="form-control" id="emailJoueur" required/>
+            <input type="email" className="form-control" name="emailPlayer" defaultValue={player?.emailPlayer}/>
           </div>
         
           <div className="row col-md-3 mb-3 me-2">
-            <label htmlFor="passeJoueur" className="px-0">Mot de passe</label>
-            <input type="email" className="form-control" id="passeJoueur" required/>
+            <label htmlFor="password" className="px-0">Mot de passe</label>
+            <input type="text" className="form-control" name="password" placeholder="Nouveau mot de passe"/>
           </div>
         
           <div className="row col-md-3 mb-3 me-2">
-            <label htmlFor="passeJoueur" className="px-0">Droits du joueur</label>
-            <select className="form-select" aria-label="Default select example">
-              <option selected>Loisir</option>
-              <option value="1">Joueur</option>
-              <option value="2">Capitaine</option>
-              <option value="3">SuperAdmin</option>
-            </select>
+            <label htmlFor="roles" className="px-0">Droits</label>
+            <input type="text" className="form-control" name="roles" defaultValue={player?.roles}/>
           </div>
-        
-            <div className="row col-md-3 mb-3 me-2 justify-content-around">
-              <label htmlFor="" className="px-0">Responsable ouverture</label>
-              <div className="col-auto">
-                <label className="form-check-label" htmlFor="respOuverture1">
-                  Non
-                  </label>
-                  <input className="form-check-input" type="radio" name="respOuverture" id="respOuverture1"checked/>
-              </div> 
-              <div className="col-auto">
-                <label className="form-check-label" htmlFor="respOuverture2">
-                  Oui
-                </label>
-                <input className="form-check-input" type="radio" name="respOuverture" id="respOuverture2"/>
-              </div> 
-            </div>
-       
-            <div className="row col-md-3 mb-3 me-2">
-              <label htmlFor="passeJoueur" className="px-0">Jour d'ouverture</label>
-              <select className="form-select" aria-label="Default select example">
-                <option selected>lundi</option>
-                <option value="1">mardi</option>
-                <option value="2">Mercredi</option>
-                <option value="3">Jeudi</option>
-                <option value="3">Vendredi</option>
-              </select>
-            </div>
-        
+
           <div className="row col-md-3 mb-3 me-2">
-            <label htmlFor="passeJoueur" className="px-0">Interclubs</label>
-            <select className="form-select" aria-label="Default select example">
-              <option selected>Non</option>
-              <option value="1">Equipe 1</option>
-              <option value="2">Equipe 2</option>
-            </select>
+            <label htmlFor="jour_ouverture" className="px-0">Jour ouverture</label>
+            <input type="text" className="form-control" name="jour_ouverture" defaultValue={player?.jour_ouverture}/>
           </div>
-       
+                     
           <div className="row col-md-3 mb-3 me-2">
-            <label htmlFor="passeJoueur" className="px-0">Capitaine</label>
-            <select className="form-select" aria-label="Default select example">
-              <option selected>Non</option>
-              <option value="1">Equipe 1</option>
-              <option value="2">Equipe 2</option>
-            </select>
+            <label htmlFor="joueur_interclubs" className="px-0">Joueur Interclubs</label>
+            <input type="text" className="form-control" name="joueur_interclubs" defaultValue={player?.joueur_interclubs}/>
+          </div>
+
+          <div className="row col-md-3 mb-3 me-2">
+            <label htmlFor="joueur_capitaine" className="px-0">Joueur Capitaine</label>
+            <input type="text" className="form-control" name="joueur_capitaine" defaultValue={player?.joueur_capitaine}/>
           </div>
         
           <div className="row col-md-3 mb-3 me-2">
-            <label htmlFor="basic-url" className="form-label">Photo du joueur</label>
+            <label htmlFor="photos" className="form-label">Photo du joueur</label>
             <div className="input-group">
               <span className="input-group-text" id="basic-addon3">./assets/img/</span>
-              <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4"/>
+              <input type="text" className="form-control" name="photos" aria-describedby="basic-addon3 basic-addon4" defaultValue={player?.photos}/>
             </div>
           </div>
         
@@ -210,6 +170,9 @@ const Updateplayer = () => {
           </div>
         </form>
         <div className="separator"></div>
+        {isPlayerUpdated && (
+  <p className="text-success fs-3">Le joueur a été modifié avec succès.</p>
+)}
         
         
         </div>
