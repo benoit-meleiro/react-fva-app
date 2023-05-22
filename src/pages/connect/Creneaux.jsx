@@ -7,8 +7,6 @@ import Creneaubad from "../../component/Creneaubad"
 import Creneaubadclosed from "../../component/Creneaubadclosed"
 import Deconnexion from "../../component/Deconnexion";
 
-
-
 const Creneaux = () => {
   // créé un state creneauxData pour pouvoir stocker les données récupérées
   // depuis l'API, à savoir la liste des creneaux
