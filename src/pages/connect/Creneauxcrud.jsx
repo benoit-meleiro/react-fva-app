@@ -1,5 +1,5 @@
-import React from "react";
-// import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 import Deconnexion from "../../component/Deconnexion";
@@ -8,8 +8,45 @@ import Menuconnex from "../../component/Menuconnex"
 
 
 const Intercrud = () => {
-  return (
+
+  // //! Message delete
+const [isCreneauDeletedMessageVisible, setIsCreneauDeletedMessageVisible] = useState(false);
+const [isCreneauDeleted, setIsCreneauDeleted] = useState(false);
+// // ! Message create 
+// const [isClubCreatedMessageVisible, setIsClubCreatedMessageVisible] = useState(false);
+
+
+const [creneauxData, setCreneauxData] = useState([]);
+      // je récupère la fonction navigate du react router
+  const navigate = useNavigate();
+// je fais l'appel fetch vers l'url de mon api (qui est en local)
+  // et qui renvoie un json contenant la liste des creneaux en BDD
+  // quand l'appel est terminé, je stocke les données récupérées
+  // dans le state, ce qui force mon composant à se recharger
+
+  useEffect(() => {
+    fetch("http://localhost:3002/sessions")
+      .then((creneauxDataJson) => {
+        return creneauxDataJson.json();
+      })
+      .then((creneauxDataJs) => {
+        setCreneauxData(creneauxDataJs.data);
+        
+      })
+
+      .finally(() => {
+        setIsCreneauDeletedMessageVisible(false); // Réinitialisation de l'état du message
+      });
+
+  }, [isCreneauDeleted]);
     
+  return (
+
+
+
+ 
+
+  
     <>
     <Header/>
     <main class="flex-shrink-0">
@@ -20,21 +57,39 @@ const Intercrud = () => {
         <div class="separator"></div>
         <Menuconnex/>
         <div class="separator"></div>
-      <p class="text-center text-uppercase fw-bold ">CRéATION - MODIFICATION - SUPPRESSION DES JOUEURS</p>
+      <p class="text-center text-uppercase fw-bold ">CRéATION - MODIFICATION - SUPPRESSION DES CRENEAUX</p>
       <div class="separator"></div>
       <form class="row g-3">
-        
-        <div class="row col-md-3 mb-3 me-2">
-          <label for="passeJoueur" class="px-0">Equipe</label>
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Equipe 1</option>
-            <option value="2">Equipe 2</option>
-          </select>
+
+      <div class="row col-md-3 mb-3 me-2">
+          <label for="dateSession">Date</label>
+          <input type="date" name="dateSession" min="2023-09-01" max="2024-12-31"/>
         </div>
-        
+
+      <div class="row col-md-3 mb-3 me-2 justify-content-around">
+          <label for="" class="px-0">Disponibilité</label>
+          <div class="col-auto">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Dispo
+              </label>
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"checked/>
+          </div> 
+          <div class="col-auto">
+            <label class="form-check-label" for="flexRadioDefault2">
+              Non dispo
+            </label>
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"/>
+          </div> 
+        </div>  
+                        
         <div class="row col-md-3 mb-3 me-2">
-          <label for="prenomJoueurs" class="px-0">Numéro du match</label>
-          <input type="number" class="form-control" id="idmatch" required/>
+          <label for="nomResponsableOuverture" class="px-0">Nom responsable session</label>
+          <input type="text" class="form-control" name="nomResponsableOuverture" />
+        </div>
+
+        <div class="row col-md-3 mb-3 me-2">
+          <label for="prenomResponsableOuverture" class="px-0">Prénom responsable session</label>
+          <input type="text" class="form-control" name="prenomResponsableOuverture" />
         </div>
        
         <div class="row col-md-3 mb-3 me-2 justify-content-around">
@@ -54,28 +109,7 @@ const Intercrud = () => {
         </div>
         
         <div class="row col-md-3 mb-3 me-2">
-          <label for="start">Date</label>
-          <input type="date" id="start" name="trip-start" value="2023-05-01" min="2023-09-01" max="2024-12-31"/>
-        </div>
-        
-        <div class="row col-md-3 mb-3 me-2">
-          <label for="passeJoueur" class="px-0">Heure</label>
-          <input type="time" class="form-control" id="passeJoueur" required/>
-        </div>
-        
-        <div class="row col-md-3 mb-3 me-2">
-          <label for="nomJoueurs" class="px-0">Adversaire</label>
-          <input type="text" class="form-control" id="nomJoueurs" required/>
-        </div>
-        
-        <div class="row col-md-3 mb-3 me-2">
-          <label for="nomJoueurs" class="px-0">Lieu</label>
-          <input type="text" class="form-control" id="nomJoueurs" required/>
-        </div>
-        
-        
-        <div class="row col-md-3 mb-3 me-2">
-        <button type="submit" class="btn btn-fva-rouge">Créer l'interclub</button>
+        <button type="submit" class="btn btn-fva-rouge">Créer le creneau</button>
         </div>
       </form>
       <div class="separator"></div>
@@ -85,10 +119,10 @@ const Intercrud = () => {
           <thead>
             <tr>
               <th scope="col">#id</th>
-              <th scope="col">Equipe</th>
-              <th scope="col">numéro match</th>
-              <th scope="col">reception</th>
-              <th scope="col">date</th>
+              <th scope="col">Date</th>
+              <th scope="col">Dispo créneau</th>
+              <th scope="col">nom resp</th>
+              <th scope="col">prénom resp</th>
               <th scope="col">Adversaire</th>
               <th scope="col">
                <span class="color-fva-rouge">modification</span></th> 
@@ -98,36 +132,26 @@ const Intercrud = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>equipe 1</td>
-              <td>1</td>
-              <td>oui</td>
-              <td>02/05/2023</td>
-              <td>les bauzibads</td>
-              <td><button class="btn btn-fva-rouge-petit">Modifier</button></td>
-              <td><button class="btn btn-fva-rouge-petit">Supprimer</button></td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Nom</td>
-              <td>Prénom</td>
-              <td>Sexe</td>
-              <td>Email</td>
-              <td>Droits</td>
-              <td><button class="btn btn-fva-rouge-petit">Modifier</button></td>
-              <td><button class="btn btn-fva-rouge-petit">Supprimer</button></td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Nom</td>
-              <td>Prénom</td>
-              <td>Sexe</td>
-              <td>Email</td>
-              <td>Droits</td>
-              <td><button class="btn btn-fva-rouge-petit">Modifier</button></td>
-              <td><button class="btn btn-fva-rouge-petit">Supprimer</button></td>
-            </tr>
+          {creneauxData.map((creneau) => {
+            const dispo = creneau.disponibiliteSession === true ? "disponible" : "non disponible";
+            const interM = creneau.matchsInterclubs === true ? "oui" : "non"
+                return (
+                    <tr key={creneau.id}>
+                            <th  scope="row">{creneau.id}</th>
+                            <td>{creneau.dateSession}</td>
+                            <td>{dispo}</td>
+                            <td>{creneau.nomResponsableOuverture}</td>
+                            <td>{creneau.prenomResponsableOuverture}</td>
+                            <td>{interM}</td>
+                            
+                            <td><button className="btn btn-fva-rouge-petit text-white text-decoration-none"><Link className=" text-white text-decoration-none" to={`/espace/admin/sessions/${creneau.id}/update`}>Modifier</Link></button></td>
+                            
+                            <td><button   className="btn btn-fva-rouge-petit">Supprimer</button></td>
+                            {/* <td><button onClick={() => handleDeleteClick(club)}  className="btn btn-fva-rouge-petit">Supprimer</button></td> */}
+                          </tr>
+                );
+              })}
+            
           </tbody>
         </table>
       </div>

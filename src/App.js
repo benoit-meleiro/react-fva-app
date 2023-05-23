@@ -12,6 +12,7 @@ import Playercrud from "./pages/connect/Playercrud"
 import Updateplayer from "./pages/connect/Updateplayer"
 import Creneauxcrud from "./pages/connect/Creneauxcrud"
 import Intercrud from "./pages/connect/Intercrud"
+import Updateclub from "./pages/connect/Updateclub";
 
 
 
@@ -36,6 +37,7 @@ function App() {
 
         <Route path="/espace/admin/creneauxcrud" element={<Creneauxcrud/>}/>
         <Route path="/espace/admin/intercrud" element={<Intercrud/>}/>
+        <Route path="/espace/admin/clubs/:id/update" element={<Updateclub/>}/>
         
       </Routes>
     </BrowserRouter>

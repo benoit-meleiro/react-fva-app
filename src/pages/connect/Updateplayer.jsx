@@ -7,9 +7,6 @@ import Deconnexion from "../../component/Deconnexion";
 import Menuconnex from "../../component/Menuconnex";
 
 
-
-
-
 const Updateplayer = () => {
   const navigate = useNavigate();
   const [isPlayerUpdated, setPlayerUpdated] = useState(false);
@@ -54,7 +51,7 @@ const Updateplayer = () => {
     const photos = event.target.photos.value
 
     // on fait un appel vers l'API (express)
-    // on lui spécifie la méthode POST (pour créer)
+    // on lui spécifie la méthodePUT (pour modifier)
     // et on lui passe en "body" les données du formulaire
     // attention, il faut que les données soient au format JSON
     // donc on utilise JSON.stringify

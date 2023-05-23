@@ -40,7 +40,7 @@ const Playercrud = () => {
 
   }, [isPlayerDeleted]);
 
-// //* FONCTION POUR LE CREATE
+//* FONCTION POUR LE CREATE
 const handleSubmit = (event) => {
     // on empêche la page de recharcher le formulaire
   event.preventDefault();
