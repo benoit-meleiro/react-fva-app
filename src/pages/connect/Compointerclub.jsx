@@ -29,17 +29,17 @@ const Compointerclub = () => {
   return (
  <>
     <Header/>
-    <main class="flex-shrink-0">
-      <div class="container">
-        <h1 class="text-uppercase text-center my-lg-2">espaces licenciés</h1>
+    <main className="flex-shrink-0">
+      <div className="container">
+        <h1 className="text-uppercase text-center my-lg-2">espaces licenciés</h1>
       
         <Deconnexion/>
-        <div class="separator"></div>
+        <div className="separator"></div>
         <Menuconnex/>
-        <div class="separator"></div>
-      <p class="text-center text-uppercase fw-bold color-fvaBleu">tu es captaine de l’équipe 1 des fous du volants</p>
-      <div class="separator"></div>
-      <div class="d-flex flex-row flex-wrap justify-content-center align-items-center gap-2">
+        <div className="separator"></div>
+      <p className="text-center text-uppercase fw-bold color-fvaBleu">tu es captaine de l’équipe 1 des fous du volants</p>
+      <div className="separator"></div>
+      <div className="d-flex flex-row flex-wrap justify-content-center align-items-center gap-2">
         
       {clubsData.map((club) => {
           const PlayerEquip = 1;
@@ -52,7 +52,7 @@ const Compointerclub = () => {
 
        
       </div></div>
-    <div class="separator"></div>
+    <div className="separator"></div>
     </main>
     <Footer/>
     </>

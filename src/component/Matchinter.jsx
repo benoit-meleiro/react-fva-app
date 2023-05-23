@@ -51,58 +51,58 @@ const Matchinter = ({club}) => {
           <span className="text" data-checked-text="Ok en mode ninja " data-unchecked-text="Je ne suis pas la "></span>
           </label>
         </div>
-        <h3 class="text-white text-center text-uppercase">JOUEURS sélectionnés</h3>
-          <div class="separator"></div>    
-          <div class=" d-flex flex-row  flex-wrap justify-content-around text-white">
-              <div class="col-3 col-sm-3 col-md-3 col-lg-3 py-2 text-center mb-2 bg-fva-bleu-f">
+        <h3 className="text-white text-center text-uppercase">JOUEURS sélectionnés</h3>
+          <div className="separator"></div>    
+          <div className=" d-flex flex-row  flex-wrap justify-content-around text-white">
+              <div className="col-3 col-sm-3 col-md-3 col-lg-3 py-2 text-center mb-2 bg-fva-bleu-f">
                 <h5>SH 1</h5>
-                <img src="/img/Franck_Fort.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                <p class=" mb-0 lh-1 fs-6 text-center">Franck</p>
+                <img src="/img/Franck_Fort.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline-block align-text-top rounded-pill "/>
+                <p className=" mb-0 lh-1 fs-6 text-center">Franck</p>
               </div>
-              <div class="col-3 col-sm-3 col-md-3 col-lg-3 py-2 text-center mb-2 bg-fva-bleu-f">
+              <div className="col-3 col-sm-3 col-md-3 col-lg-3 py-2 text-center mb-2 bg-fva-bleu-f">
                 <h5>SH 2</h5>
-                <img src="/img/Mouss_Tache.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                <p class=" mb-0 lh-1 fs-6 text-center">Mouss</p>
+                <img src="/img/Mouss_Tache.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline-block align-text-top rounded-pill "/>
+                <p className=" mb-0 lh-1 fs-6 text-center">Mouss</p>
               </div>
-              <div class="col-3 col-sm-3 col-md-3 col-lg-3 py-2 text-center mb-2 bg-fva-bleu-f">
+              <div className="col-3 col-sm-3 col-md-3 col-lg-3 py-2 text-center mb-2 bg-fva-bleu-f">
                 <h5>SD 1</h5>
-                <img src="/img/Tara_Clure.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                <p class=" mb-0 lh-1 fs-6 text-center">Tara</p>
+                <img src="/img/Tara_Clure.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline-block align-text-top rounded-pill "/>
+                <p className=" mb-0 lh-1 fs-6 text-center">Tara</p>
               </div>
-              <div class="col-5 col-sm-5 col-md-5 col-lg-5 py-2 text-center mb-2 bg-fva-bleu-f">
+              <div className="col-5 col-sm-5 col-md-5 col-lg-5 py-2 text-center mb-2 bg-fva-bleu-f">
                 <h5>DH</h5>
-                <div class="d-flex flex-row justify-content-around">
-                  <div><img src="/img/Jim_Nastique.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                  <p class=" mb-0 lh-1 fs-6 text-center">Jim</p></div>
-                  <div><img src="/img/Sam_Soule.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                  <p class=" mb-0 lh-1 fs-6 text-center">Sam</p></div>
+                <div className="d-flex flex-row justify-content-around">
+                  <div><img src="/img/Jim_Nastique.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline-block align-text-top rounded-pill "/>
+                  <p className=" mb-0 lh-1 fs-6 text-center">Jim</p></div>
+                  <div><img src="/img/Sam_Soule.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline-block align-text-top rounded-pill "/>
+                  <p className=" mb-0 lh-1 fs-6 text-center">Sam</p></div>
                  </div>
               </div>
-              <div class="col-5 col-sm-5 col-md-5 col-lg-5 py-2 text-center mb-2 bg-fva-bleu-f">
+              <div className="col-5 col-sm-5 col-md-5 col-lg-5 py-2 text-center mb-2 bg-fva-bleu-f">
                 <h5>DD</h5>
-                <div class="d-flex flex-row justify-content-around">
-                  <div><img src="/img/Anne_Abolisant.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                  <p class=" mb-0 lh-1 fs-6 text-center">Anne</p></div>
-                  <div><img src="/img/Sarah_Joute.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                  <p class=" mb-0 lh-1 fs-6 text-center">Sarah</p></div>
+                <div className="d-flex flex-row justify-content-around">
+                  <div><img src="/img/Anne_Abolisant.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline-block align-text-top rounded-pill "/>
+                  <p className=" mb-0 lh-1 fs-6 text-center">Anne</p></div>
+                  <div><img src="/img/Sarah_Joute.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline-block align-text-top rounded-pill "/>
+                  <p className=" mb-0 lh-1 fs-6 text-center">Sarah</p></div>
                  </div>
               </div>
-              <div class="col-5 col-sm-5 col-md-5 col-lg-5 py-2 text-center mb-2 bg-fva-bleu-f">
+              <div className="col-5 col-sm-5 col-md-5 col-lg-5 py-2 text-center mb-2 bg-fva-bleu-f">
                 <h5>DM 1</h5>
-                <div class="d-flex flex-row justify-content-around">
-                  <div><img src="/img/Sam_Soule.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                  <p class=" mb-0 lh-1 fs-6 text-center">Sam</p></div>
-                  <div><img src="/img/Lara_Clette.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                  <p class=" mb-0 lh-1 fs-6 text-center">Lara</p></div>
+                <div className="d-flex flex-row justify-content-around">
+                  <div><img src="/img/Sam_Soule.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline-block align-text-top rounded-pill "/>
+                  <p className=" mb-0 lh-1 fs-6 text-center">Sam</p></div>
+                  <div><img src="/img/Lara_Clette.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline-block align-text-top rounded-pill "/>
+                  <p className=" mb-0 lh-1 fs-6 text-center">Lara</p></div>
                  </div>
               </div>
-              <div class="col-5 col-sm-5 col-md-5 col-lg-5 py-2 text-center mb-2 bg-fva-bleu-f">
+              <div className="col-5 col-sm-5 col-md-5 col-lg-5 py-2 text-center mb-2 bg-fva-bleu-f">
                 <h5>DM 2</h5>
-                <div class="d-flex flex-row justify-content-around">
-                  <div><img src="/img/Jean_Tourloupe.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                  <p class=" mb-0 lh-1 fs-6 text-center">Jean</p></div>
-                  <div><img src="/img/Tara_Clure.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" class="d-inline-block align-text-top rounded-pill "/>
-                  <p class=" mb-0 lh-1 fs-6 text-center">Tara</p></div>
+                <div className="d-flex flex-row justify-content-around">
+                  <div><img src="/img/Jean_Tourloupe.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline-block align-text-top rounded-pill "/>
+                  <p className=" mb-0 lh-1 fs-6 text-center">Jean</p></div>
+                  <div><img src="/img/Tara_Clure.jpg" alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline-block align-text-top rounded-pill "/>
+                  <p className=" mb-0 lh-1 fs-6 text-center">Tara</p></div>
                  </div>
               </div>
             </div>

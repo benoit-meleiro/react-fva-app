@@ -13,6 +13,7 @@ import Updateplayer from "./pages/connect/Updateplayer"
 import Creneauxcrud from "./pages/connect/Creneauxcrud"
 import Intercrud from "./pages/connect/Intercrud"
 import Updateclub from "./pages/connect/Updateclub";
+import Updatecreneaux from "./pages/connect/Updatecreneaux";
 
 
 
@@ -31,12 +32,15 @@ function App() {
         <Route path="/espace/creneaux" element={<Creneaux/>}/>
         <Route path="/espace/dispointerclub" element={<Dispointerclub/>}/>
         <Route path="/espace/compointerclub" element={<Compointerclub/>}/>
-        <Route path="/espace/admin/playercrud" element={<Playercrud/>}/>
+
+        <Route path="/espace/admin/players" element={<Playercrud/>}/>
         <Route path="/espace/admin/players/:id/update" element={<Updateplayer/>}/>
        
 
-        <Route path="/espace/admin/creneauxcrud" element={<Creneauxcrud/>}/>
-        <Route path="/espace/admin/intercrud" element={<Intercrud/>}/>
+        <Route path="/espace/admin/sessions" element={<Creneauxcrud/>}/>
+        <Route path="/espace/admin/sessions/:id/update" element={<Updatecreneaux/>}/>
+
+        <Route path="/espace/admin/clubs" element={<Intercrud/>}/>
         <Route path="/espace/admin/clubs/:id/update" element={<Updateclub/>}/>
         
       </Routes>

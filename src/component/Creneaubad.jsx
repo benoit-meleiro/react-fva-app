@@ -52,8 +52,8 @@ const terrainDispo = (dayOfWeek) => {
             {/* <h2 className="text-white text-center">{creneau.jourSession}{creneau.dateSession}</h2> */}
             <h2 className="text-white text-center text-uppercase ">{formatDate(creneau.dateSession)}</h2>
             <div className="d-flex align-items-center justify-content-center">
-              <img src={`/img/${creneau.nomResponsableOuverture}_${creneau.prenomResponsableOuverture}.jpg`} alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline align-text-top rounded-pill mx-3"/>
-              <p className="d-inline text-white"><span className="fw-bold">{creneau.nomResponsableOuverture}</span> est le responsable de cette session</p>
+              <img src={`/img/${creneau.prenomResponsableOuverture}_${creneau.nomResponsableOuverture}.jpg`} alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline align-text-top rounded-pill mx-3"/>
+              <p className="d-inline text-white"><span className="fw-bold">{creneau.prenomResponsableOuverture}</span> est le responsable de cette session</p>
               {/* <p className="d-inline text-white"><span className="fw-bold">{creneau.nomResponsableOuverture}</span> est le responsable de cette session</p> */}
             </div>
             <p className="text-white fw-normal text-center">{GymnaseSession(dayOfWeek)}</p>
@@ -72,8 +72,8 @@ const terrainDispo = (dayOfWeek) => {
             <h3 className="text-white text-center">QUI SERA LA ?</h3>
             <div className="row justify-content-center text-white gap-1">
             <div className="joueur-dispo-creneaux col-3 col-sm-2 col-md-2 col-lg-2 text-center mb-1">
-    <img src={`/img/${creneau.nomResponsableOuverture}_${creneau.prenomResponsableOuverture}.jpg`} alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline-block align-text-top rounded-pill" />
-    <p className="mb-0 lh-1 fs-6 text-center">{creneau.nomResponsableOuverture}</p>
+    <img src={`/img/${creneau.prenomResponsableOuverture}_${creneau.nomResponsableOuverture}.jpg`} alt="icone de jeune joueuse symbolisant l'âge des adhérents" width="48" height="48" className="d-inline-block align-text-top rounded-pill" />
+    <p className="mb-0 lh-1 fs-6 text-center">{creneau.prenomResponsableOuverture}</p>
   </div>
 
 
