@@ -42,6 +42,9 @@ function App() {
 
         <Route path="/espace/admin/clubs" element={<Intercrud/>}/>
         <Route path="/espace/admin/clubs/:id/update" element={<Updateclub/>}/>
+
+        <Route path="/login" element={<Connexuser />} />
+
         
       </Routes>
     </BrowserRouter>

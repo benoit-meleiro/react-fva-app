@@ -31,7 +31,14 @@ const Updateclub = () => {
   useEffect(() => {
     // je fais un appel fetch, vers l'url de l'api pour récupérer
     //  un coworking en fonction de l'id présent dans l'url
-    fetch(`http://localhost:3002/clubs/${id}`)
+    const jwt = localStorage.getItem("jwt");
+    fetch(`http://localhost:3002/clubs/${id}`,{
+      headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+            },
+      body: JSON.stringify(),
+                })
       .then((responseJson) => responseJson.json())
       .then((responseJs) => {
         // si j'ai une réponse de l'api, je stocke le coworking

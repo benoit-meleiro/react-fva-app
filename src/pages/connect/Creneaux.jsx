@@ -6,6 +6,8 @@ import Menuconnex from "../../component/Menuconnex"
 import Creneaubad from "../../component/Creneaubad"
 import Creneaubadclosed from "../../component/Creneaubadclosed"
 import Deconnexion from "../../component/Deconnexion";
+import RequireAuth from "../../component/RequireAuth";
+
 
 const Creneaux = () => {
   // créé un state creneauxData pour pouvoir stocker les données récupérées
@@ -21,9 +23,17 @@ const Creneaux = () => {
   // et qui renvoie un json contenant la liste des creneaux en BDD
   // quand l'appel est terminé, je stocke les données récupérées
   // dans le state, ce qui force mon composant à se recharger
-
+  const jwt = localStorage.getItem("jwt");
   useEffect(() => {
-    fetch("http://localhost:3002/sessions")
+    fetch("http://localhost:3002/sessions",{
+     
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+      },
+      body: JSON.stringify(),
+            })
+    
       .then((creneauxDataJson) => {
         return creneauxDataJson.json();
       })
@@ -37,6 +47,7 @@ const Creneaux = () => {
     
     <>
     <Header/>
+    <RequireAuth/>
     <main className="flex-shrink-0">
       <div className="container">
         <h1 className="text-uppercase text-center my-lg-2">espaces licenciés</h1>

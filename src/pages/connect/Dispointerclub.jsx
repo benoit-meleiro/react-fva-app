@@ -13,8 +13,15 @@ const Dispointerclub = () => {
   const [clubsData, setClubsData] = useState([]);
   const navigate = useNavigate();
  
+  const jwt = localStorage.getItem("jwt");
   useEffect(() => {
-    fetch("http://localhost:3002/clubs")
+    fetch("http://localhost:3002/clubs",{
+      headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+            },
+      body: JSON.stringify(),
+                })
       .then((clubsDataJson) => {
         return clubsDataJson.json();
       })

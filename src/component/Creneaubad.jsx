@@ -3,10 +3,16 @@
 import React, { useEffect, useState } from 'react';
 
 const Creneaubad = ({creneau}) => {
-
+const jwt = localStorage.getItem("jwt");
   const [presentsData, setpresentsData] = useState([]);
 useEffect(() => {
-  fetch(`http://localhost:3002/sessions/${creneau.id}/present`)
+  fetch(`http://localhost:3002/sessions/${creneau.id}/present`,{
+    headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+          },
+    body: JSON.stringify(),
+              })
     .then((presentsDataJson) => {
       return presentsDataJson.json();
     })

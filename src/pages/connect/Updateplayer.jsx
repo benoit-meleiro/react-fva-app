@@ -5,7 +5,7 @@ import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 import Deconnexion from "../../component/Deconnexion";
 import Menuconnex from "../../component/Menuconnex";
-
+import RequireAuth from "../../component/RequireAuth";
 
 const Updateplayer = () => {
   const navigate = useNavigate();
@@ -21,7 +21,14 @@ const Updateplayer = () => {
   useEffect(() => {
     // je fais un appel fetch, vers l'url de l'api pour récupérer
     //  un coworking en fonction de l'id présent dans l'url
-    fetch(`http://localhost:3002/players/${id}`)
+    const jwt = localStorage.getItem("jwt");
+    fetch(`http://localhost:3002/players/${id}`,{
+      headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+            },
+      body: JSON.stringify(),
+                })
       .then((responseJson) => responseJson.json())
       .then((responseJs) => {
         // si j'ai une réponse de l'api, je stocke le coworking
@@ -57,10 +64,12 @@ const Updateplayer = () => {
     // donc on utilise JSON.stringify
     // il faut que les donnnées envoyées correspondent
     // à ce qui est attendu par l'API
+    const jwt = localStorage.getItem("jwt");
     fetch(`http://localhost:3002/players/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${jwt}`, // Ajouter le JWT au header "Authorization"
       },
       body: JSON.stringify({
         firstName,
@@ -84,7 +93,7 @@ const Updateplayer = () => {
         console.log("Player modifié");
         setPlayerUpdated(true);
         setTimeout(() => {
-          navigate("/espace/admin/playercrud");
+          navigate("/espace/admin/players");
         }, 2000); // Redirige après 2 secondes
         
         // sinon on affiche un message d'erreur
@@ -99,6 +108,7 @@ const Updateplayer = () => {
     <Header/>
     <main className="flex-shrink-0">
       <div className="container">
+      <RequireAuth/>
         <h1 className="text-uppercase text-center my-lg-2">espaces licenciés</h1>
       
         <Deconnexion/>

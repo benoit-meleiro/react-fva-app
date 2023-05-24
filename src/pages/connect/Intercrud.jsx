@@ -4,7 +4,7 @@ import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 import Deconnexion from "../../component/Deconnexion";
 import Menuconnex from "../../component/Menuconnex";
-
+import RequireAuth from "../../component/RequireAuth";
 
 //* récupération de la liste des interclubs
 const Intercrud = () => {
@@ -28,9 +28,15 @@ const Intercrud = () => {
   // et qui renvoie un json contenant la liste des clubs en BDD
   // quand l'appel est terminé, je stocke les données récupérées
   // dans le state, ce qui force mon composant à se recharger
-
+  const jwt = localStorage.getItem("jwt");
   useEffect(() => {
-    fetch("http://localhost:3002/clubs")
+    fetch("http://localhost:3002/clubs",{
+      headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+            },
+      body: JSON.stringify(),
+                })
       .then((clubsDataJson) => {
         return clubsDataJson.json();
       })
@@ -85,6 +91,7 @@ fetch("http://localhost:3002/clubs", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
+    "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
   },
   body: JSON.stringify(
     
@@ -147,8 +154,15 @@ fetch("http://localhost:3002/clubs", {
 
     // je fais un appel fetch vers l'url de mon api avec la méthode DELETE
     // et je passe l'id du coworking à supprimer en paramètre de l'url
+    const jwt = localStorage.getItem("jwt");
     fetch("http://localhost:3002/clubs/" + club.id, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+      },
+      body: JSON.stringify(),
+      
       // si l'url de mon api nécessite une authentification
       // je lui passe le JWT stocké en localStorage dans le header
       // de la requête
@@ -184,6 +198,7 @@ fetch("http://localhost:3002/clubs", {
     <Header/>
     <main className="flex-shrink-0">
       <div className="container">
+      <RequireAuth/>
         <h1 className="text-uppercase text-center my-lg-2">espaces licenciés</h1>
       
         <Deconnexion/>

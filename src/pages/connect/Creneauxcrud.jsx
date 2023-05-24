@@ -4,7 +4,7 @@ import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 import Deconnexion from "../../component/Deconnexion";
 import Menuconnex from "../../component/Menuconnex"
-
+import RequireAuth from "../../component/RequireAuth";
 
 
 const Intercrud = () => {
@@ -23,15 +23,21 @@ const [creneauxData, setCreneauxData] = useState([]);
   // et qui renvoie un json contenant la liste des creneaux en BDD
   // quand l'appel est terminé, je stocke les données récupérées
   // dans le state, ce qui force mon composant à se recharger
-
+  const jwt = localStorage.getItem("jwt");
   useEffect(() => {
-    fetch("http://localhost:3002/sessions")
+    fetch("http://localhost:3002/sessions",{
+      headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+            },
+      body: JSON.stringify(),
+                })
       .then((creneauxDataJson) => {
         return creneauxDataJson.json();
       })
       .then((creneauxDataJs) => {
         setCreneauxData(creneauxDataJs.data);
-        
+        console.log(creneauxDataJs.data)
       })
 
       .finally(() => {
@@ -61,10 +67,12 @@ event.preventDefault();
 // donc on utilise JSON.stringify
 // il faut que les donnnées envoyées correspondent
 // à ce qui est attendu par l'API
+const jwt = localStorage.getItem("jwt");
 fetch("http://localhost:3002/sessions", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
+    "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
   },
   body: JSON.stringify(
     
@@ -113,8 +121,14 @@ fetch("http://localhost:3002/sessions", {
 
   // je fais un appel fetch vers l'url de mon api avec la méthode DELETE
   // et je passe l'id du coworking à supprimer en paramètre de l'url
+  const jwt = localStorage.getItem("jwt");
   fetch("http://localhost:3002/sessions/" + creneau.id, {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+    },
+    body: JSON.stringify(),
     // si l'url de mon api nécessite une authentification
     // je lui passe le JWT stocké en localStorage dans le header
     // de la requête
@@ -148,10 +162,12 @@ fetch("http://localhost:3002/sessions", {
  
     <>
     <Header/>
+    
     <main className="flex-shrink-0">
       <div className="container">
+      <RequireAuth/>
         <h1 className="text-uppercase text-center my-lg-2">espaces licenciés</h1>
-      
+        
         <Deconnexion/>
         <div className="separator"></div>
         <Menuconnex/>
@@ -260,7 +276,7 @@ fetch("http://localhost:3002/sessions", {
             </tr>
           </thead>
           <tbody>
-          {creneauxData.map((creneau) => {
+          {creneauxData.length > 0 && creneauxData.map((creneau) => {
             const dispo = creneau.disponibiliteSession === true ? "disponible" : "non disponible";
             const interM = creneau.matchsInterclubs === true ? "oui" : "non"
                 return (

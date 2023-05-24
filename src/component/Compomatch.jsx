@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
 const Compomatch = ({club}) => {
-
-  const [presentInterData, setPresentInterData] = useState([]);
+const jwt = localStorage.getItem("jwt");
+const [presentInterData, setPresentInterData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:3002/clubs/3/presentinter`)
+    fetch(`http://localhost:3002/clubs/3/presentinter`,{
+      headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+            },
+      body: JSON.stringify(),
+                })
       .then((presentInterDataJson) => {
         return presentInterDataJson.json();
       })

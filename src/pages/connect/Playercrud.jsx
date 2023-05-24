@@ -4,7 +4,7 @@ import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 import Deconnexion from "../../component/Deconnexion";
 import Menuconnex from "../../component/Menuconnex";
-
+import RequireAuth from "../../component/RequireAuth";
 
 
 
@@ -23,9 +23,14 @@ const Playercrud = () => {
   // et qui renvoie un json contenant la liste des players en BDD
   // quand l'appel est terminé, je stocke les données récupérées
   // dans le state, ce qui force mon composant à se recharger
-
+  const jwt = localStorage.getItem("jwt");
   useEffect(() => {
-    fetch("http://localhost:3002/players")
+    fetch("http://localhost:3002/players", {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+    },
+    body: JSON.stringify(),})
       .then((playersDataJson) => {
         return playersDataJson.json();
       })
@@ -89,11 +94,15 @@ const handleSubmit = (event) => {
   // donc on utilise JSON.stringify
   // il faut que les donnnées envoyées correspondent
   // à ce qui est attendu par l'API
+  const jwt = localStorage.getItem("jwt");
+
   fetch("http://localhost:3002/players", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
     },
+    body: JSON.stringify(),
     body: JSON.stringify(requestBody),
           })
 
@@ -127,8 +136,14 @@ const handleSubmit = (event) => {
 
     // je fais un appel fetch vers l'url de mon api avec la méthode DELETE
     // et je passe l'id du coworking à supprimer en paramètre de l'url
+    const jwt = localStorage.getItem("jwt");
     fetch("http://localhost:3002/players/" + player.id, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+      },
+      body: JSON.stringify(),
       // si l'url de mon api nécessite une authentification
       // je lui passe le JWT stocké en localStorage dans le header
       // de la requête
@@ -160,7 +175,9 @@ const handleSubmit = (event) => {
 
   return (
     <>
+    
     <Header/>
+    <RequireAuth/>
     <main >
     <link rel="stylesheet" href="./style.css" />
       <div className="container">

@@ -127,6 +127,23 @@ hr {
 }
 
 /* ----------- LES BOUTONS ----------- */
+
+.effectR{
+    border: solid 2px var(--fvaRouge);
+  }
+.effectV{
+  border: solid 2px var(--fvaVert);
+  }
+.effectR:hover{
+  background-color: white;
+  border: solid 2px var(--fvaRouge);
+  color: var(--fvaRouge) !important
+}
+.effectV:hover{
+  background-color: white;
+  border: solid 2px var(--fvaVert);
+  color: var(--fvaVert) !important
+}
 .btn-fva-rouge{
   display: block;
   width: 85%;

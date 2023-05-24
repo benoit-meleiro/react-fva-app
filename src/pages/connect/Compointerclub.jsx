@@ -6,14 +6,20 @@ import Deconnexion from "../../component/Deconnexion";
 import Menuconnex from "../../component/Menuconnex"
 import MembreEq from "../../component/MembreEq";
 import Compomatch from "../../component/Compomatch";
-
+import RequireAuth from "../../component/RequireAuth";
 
 const Compointerclub = () => {
   const [clubsData, setClubsData] = useState([]);
   const navigate = useNavigate();
- 
+  const jwt = localStorage.getItem("jwt");
   useEffect(() => {
-    fetch("http://localhost:3002/clubs")
+    fetch("http://localhost:3002/clubs",{
+      headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+            },
+      body: JSON.stringify(),
+                })
       .then((clubsDataJson) => {
         return clubsDataJson.json();
       })
@@ -32,7 +38,7 @@ const Compointerclub = () => {
     <main className="flex-shrink-0">
       <div className="container">
         <h1 className="text-uppercase text-center my-lg-2">espaces licenciés</h1>
-      
+      <RequireAuth/>
         <Deconnexion/>
         <div className="separator"></div>
         <Menuconnex/>

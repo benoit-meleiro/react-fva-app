@@ -5,7 +5,7 @@ import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 import Deconnexion from "../../component/Deconnexion";
 import Menuconnex from "../../component/Menuconnex";
-
+import RequireAuth from "../../component/RequireAuth";
 
 
 
@@ -26,7 +26,14 @@ const [matchsInterclubs, setMatchsInterclubs] = useState(creneau?.matchsInterclu
   useEffect(() => {
     // je fais un appel fetch, vers l'url de l'api pour récupérer
     //  un coworking en fonction de l'id présent dans l'url
-    fetch(`http://localhost:3002/sessions/${id}`)
+    const jwt = localStorage.getItem("jwt");
+    fetch(`http://localhost:3002/sessions/${id}`,{
+      headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+            },
+      body: JSON.stringify(),
+                })
       .then((responseJson) => responseJson.json())
       .then((responseJs) => {
         // si j'ai une réponse de l'api, je stocke le coworking
@@ -48,11 +55,12 @@ const [matchsInterclubs, setMatchsInterclubs] = useState(creneau?.matchsInterclu
     const prenomResponsableOuverture = event.target.prenomResponsableOuverture.value;
     const matchsInterclubs =  event.target.matchsInterclubs.value;
     
-    
+    const jwt = localStorage.getItem("jwt");   
     fetch(`http://localhost:3002/sessions/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${jwt}`, // Ajouter le JWT au header "Authorization"
       },
       body: JSON.stringify(
      
@@ -91,6 +99,7 @@ const [matchsInterclubs, setMatchsInterclubs] = useState(creneau?.matchsInterclu
     <Header/>
     <main className="flex-shrink-0">
       <div className="container">
+      <RequireAuth/>
         <h1 className="text-uppercase text-center my-lg-2">espaces licenciés</h1>
       
         <Deconnexion/>

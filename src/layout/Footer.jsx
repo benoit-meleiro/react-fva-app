@@ -14,7 +14,7 @@ const Footer = () => {
               <Link className="d-inline-block px-5 text-decoration-none  text-dark"  to={`/`}>Mentions Légales</Link>
               <Link className="d-inline-block px-5 text-decoration-none text-dark" to={`/`}>Statuts</Link>
               <Link className="d-inline-block px-5 text-decoration-none text-dark" to={`/`}>Réglement Intérieur</Link>
-              <Link className="d-inline-block px-5 text-decoration-none text-dark" to={`/espace/creneaux`}>Compteur points</Link>
+              <Link className="d-inline-block px-5 text-decoration-none text-dark" to={`/`}>Compteur points</Link>
               <Link className="d-inline-block px-5 text-decoration-none text-dark" to={`/`}>FAQ</Link>
           </div>
         </div>
