@@ -144,19 +144,46 @@ hr {
   border: solid 2px var(--fvaVert);
   color: var(--fvaVert) !important
 }
-.btn-fva-rouge{
-  display: block;
-  width: 85%;
-  margin:auto;
-  text-transform: uppercase;
-  background-color: var(--fvaRouge);
-  font-weight: 600;
-  color: white !important;
-  padding: 0.25rem 0.5rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 1rem;
-}
+  .btn-fva-rouge{
+    display: block;
+    width: 85%;
+    margin:auto;
+    text-transform: uppercase;
+    background-color: var(--fvaRouge);
+    font-weight: 600;
+    color: white !important;
+    padding: 0.25rem 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 1rem;
+  }
+  .btn-fva-rouge-bad{
+    display: block;
+    width: 150px;
+    margin:auto;
+    text-transform: uppercase;
+    background-color: var(--fvaRouge);
+    font-weight: 600;
+    color: white !important;
+    padding: 0.25rem 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 1rem;
+  }
+  .btn-fva-rouge-bad:hover{
+    display: block;
+    width: 150px;
+    margin:auto;
+    text-transform: uppercase;
+    background-color: white;
+    font-weight: 600;
+    color: var(--fvaRouge) !important;
+    padding: 0.25rem 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 1rem;
+    border: solid 1px var(--fvaRouge)
+  }
 .btn-fva-rouge-petit{
   display: block;
   width: 100px;
@@ -193,13 +220,40 @@ hr {
   width: 85%;
   margin:auto;
   text-transform: uppercase;
-  background-color: var(--fvaVertClair);
+  background-color: var(--fvaVert);
   font-weight: 600;
   color: white !important;
   padding: 0.25rem 0.5rem;
   font-size: 1rem;
   line-height: 1.5;
   border-radius: 1rem;
+}
+.btn-fva-vert-bad{
+  display: block;
+  width: 150px;
+  margin:auto;
+  text-transform: uppercase;
+  background-color: var(--fvaVert);
+  font-weight: 600;
+  color: white !important;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 1rem;
+}
+.btn-fva-vert-bad:hover{
+  display: block;
+  width: 150px;
+  margin:auto;
+  text-transform: uppercase;
+  background-color: white;
+  font-weight: 600;
+  color: var(--fvaVert) !important;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 1rem;
+  border: solid 1px var(--fvaVert)
 }
 .btn-fva-vert:hover{
   display: block;

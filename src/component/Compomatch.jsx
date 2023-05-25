@@ -4,7 +4,7 @@ const Compomatch = ({club}) => {
 const jwt = localStorage.getItem("jwt");
 const [presentInterData, setPresentInterData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:3002/clubs/3/presentinter`,{
+    fetch(`http://localhost:3002/clubs/${club.id}/presentinter`,{
       headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
