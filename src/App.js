@@ -14,6 +14,7 @@ import Creneauxcrud from "./pages/connect/Creneauxcrud"
 import Intercrud from "./pages/connect/Intercrud"
 import Updateclub from "./pages/connect/Updateclub";
 import Updatecreneaux from "./pages/connect/Updatecreneaux";
+import CompteurPoint from "./pages/noConnect/CompteurPoint";
 
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/adhesions" element={<Adhesions />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Connexuser />} />
+        <Route path="/compteur-points" element={<CompteurPoint/>} />
 
         <Route path="/espace/creneaux" element={<Creneaux/>}/>
         <Route path="/espace/dispointerclub" element={<Dispointerclub/>}/>

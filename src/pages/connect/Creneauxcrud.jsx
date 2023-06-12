@@ -104,23 +104,18 @@ fetch("http://localhost:3002/sessions", {
     
     
     // sinon on affiche un message d'erreur
-    // car cela veut dire que le coworking n'a pas été créé
+    // car cela veut dire que la session n'a pas été créé
   } else {
     console.log("erreur dans la création");
   }
   
-});
-
-};
-
-
-    
+}); };
  // * FONCTION POUR LE DELETE
  const handleDeleteClick = (creneau) => {
   // const token = localStorage.getItem("jwt");
 
   // je fais un appel fetch vers l'url de mon api avec la méthode DELETE
-  // et je passe l'id du coworking à supprimer en paramètre de l'url
+  // et je passe l'id de la session à supprimer en paramètre de l'url
   const jwt = localStorage.getItem("jwt");
   fetch("http://localhost:3002/sessions/" + creneau.id, {
     method: "DELETE",
@@ -150,13 +145,13 @@ fetch("http://localhost:3002/sessions", {
       
       setTimeout(() => {
         setIsCreneauDeletedMessageVisible(false);
+        navigate(0)
       }, 2000);
       
     })
     .catch((error) => {
       console.log(error);
-    });
-};
+    }); };
 
   return (
  
@@ -265,8 +260,8 @@ fetch("http://localhost:3002/sessions", {
               <th scope="col">#id</th>
               <th scope="col">Date</th>
               <th scope="col">Dispo créneau</th>
-              <th scope="col">nom resp</th>
               <th scope="col">prénom resp</th>
+              <th scope="col">nom resp</th>
               <th scope="col">Interclubs</th>
               <th scope="col">
                <span className="color-fva-rouge">modification</span></th> 
@@ -284,8 +279,8 @@ fetch("http://localhost:3002/sessions", {
                             <th  scope="row">{creneau.id}</th>
                             <td>{creneau.dateSession}</td>
                             <td>{dispo}</td>
-                            <td>{creneau.nomResponsableOuverture}</td>
                             <td>{creneau.prenomResponsableOuverture}</td>
+                            <td>{creneau.nomResponsableOuverture}</td>
                             <td>{interM}</td>
                             
                             <td><button className="btn btn-fva-rouge-petit text-white text-decoration-none"><Link className=" text-white text-decoration-none" to={`/espace/admin/sessions/${creneau.id}/update`}>Modifier</Link></button></td>

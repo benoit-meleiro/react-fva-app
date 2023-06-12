@@ -70,9 +70,7 @@ const handleSubmit = (event) => {
     joueur_capitaine: "non",
     photos: "pas-de-photos",
   };
-//  bcrypt
-//   .hash(password, 10)
-//   .then((hashedPassword) => {
+
       const requestBody = {
           firstName: firstName,
           lastName: lastName,
@@ -164,7 +162,9 @@ const handleSubmit = (event) => {
         
         setTimeout(() => {
           setIsPlayerDeletedMessageVisible(false);
+          navigate(0);
         }, 2000);
+       
         
       })
       .catch((error) => {

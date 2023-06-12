@@ -75,6 +75,7 @@ hr {
 .color-fvaGris {
   color: var(--fvaGris)
 }
+.score-text{font-family: 'showcard-gothic-regular', arial !important;}
 /* ----------- BORDER PHOTOS JOUEURS ----------- */
 .border-fva-rouge{
   border: var(--fvaBorder) var(--fvaRouge)
@@ -366,7 +367,9 @@ input:checked + .slider:before {
   transition: 1s;
 }
 /* ? INTERCLUBS */
-
+.min-inter{
+  height: 145px; 
+}
 .slider-cap {
   position: absolute;
   cursor: pointer;

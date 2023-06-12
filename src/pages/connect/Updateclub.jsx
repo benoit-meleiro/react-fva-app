@@ -11,26 +11,13 @@ import Menuconnex from "../../component/Menuconnex";
 
 const Updateclub = () => {
 
-// //* bouton radio
-// const [receptionInter, setReceptionInter] = useState(club?.receptionInter || "");
- 
-
-
-
-
   const navigate = useNavigate();
   const [isClubUpdated, setClubUpdated] = useState(false);
-  // je créé un state pour stocker un interclub
   const [club, setClub] = useState(null);
-
-  // je récupère l'id présent dans l'url
   const { id } = useParams();
 
-  // j'utilise useEffect, pour executer l'appel à l'api
-  // une seule fois, au chargement du composant
-  useEffect(() => {
-    // je fais un appel fetch, vers l'url de l'api pour récupérer
-    //  un coworking en fonction de l'id présent dans l'url
+   useEffect(() => {
+    
     const jwt = localStorage.getItem("jwt");
     fetch(`http://localhost:3002/clubs/${id}`,{
       headers: {
@@ -47,10 +34,9 @@ const Updateclub = () => {
       });
   }, [id]);
 
-  // je créé un event listener quand le formulaire est validé
+  
   const handleSubmit = (event) => {
-    // j'utilise l'objet event, fourni automatiquement par le navigateur
-    // pour empêcher que la page soit rechargée (comportement par défaut)
+    
     event.preventDefault();
     
     const equipe = event.target.equipe.value;
@@ -75,39 +61,23 @@ const Updateclub = () => {
     const joueur1Dm2 = event.target.joueur1Dm2.value;
     const joueur2Dm2 = event.target.joueur2Dm2.value;
     console.log(event.target.dateInter.value);
-    
+    const jwt = localStorage.getItem("jwt");
     fetch(`http://localhost:3002/clubs/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${jwt}`, // Ajouter le JWT au header "Authorization"
       },
       body: JSON.stringify(
      
         {
-          equipe,
-          numeroMatch,
-          dateInter,
-          jourInter,
-          heureInter,
-          receptionInter,
-          adversaireInter,
-          lieuInter,   
-          joueursDisposEq,
-          joueursNonDisposEq,
-          joueurSh1,
-          joueurSh2,
-          joueurSd,
-          joueur1Dh,
-          joueur2Dh,
-          joueur1Dd,
-          joueur2Dd,
-          joueur1Dm1,
-          joueur2Dm1,
-          joueur1Dm2,
-          joueur2Dm2,} )  
-              
-      
-                       
+          equipe,  numeroMatch,  dateInter,
+          jourInter, heureInter, receptionInter,
+          adversaireInter, lieuInter, joueursDisposEq,
+          joueursNonDisposEq, joueurSh1, joueurSh2,
+          joueurSd, joueur1Dh, joueur2Dh,
+          joueur1Dd, joueur2Dd, joueur1Dm1,
+          joueur2Dm1, joueur1Dm2, joueur2Dm2,} )                  
       })
     
     .then((response) => {
@@ -115,7 +85,7 @@ const Updateclub = () => {
         console.log("Club modifié");
         setClubUpdated(true);
         setTimeout(() => {
-          navigate("/espace/admin/Intercrud");
+          navigate("/espace/admin/clubs");
         }, 2000); // Redirige après 2 secondes
         
         // sinon on affiche un message d'erreur
@@ -156,41 +126,7 @@ const Updateclub = () => {
         <label htmlFor="receptionInter" className="px-0">Réception (1) ou déplacement(0)</label>
           <input type="text" className="form-control" name="receptionInter" defaultValue={club?.receptionInter}/>
         </div>
-
-{/* <div className="row col-md-3 mb-3 me-2 justify-content-around">
-  <label htmlFor="receptionInter" className="px-0">Réception ou déplacement</label>
-  <div className="col-auto">
-    <label className="form-check-label" htmlFor="receptionInterTrue">
-      Domicile
-    </label>
-    <input
-      className="form-check-input"
-      type="radio"
-      name="receptionInter"
-      id="receptionInterTrue"
-      value="true"
-      checked={receptionInter === "true"}
-      onChange={(e) => setReceptionInter(e.target.value)}
-    />
-  </div>
-  <div className="col-auto">
-    <label className="form-check-label" htmlFor="receptionInterFalse">
-      Déplacement
-    </label>
-    <input
-      className="form-check-input"
-      type="radio"
-      name="receptionInter"
-      id="receptionInterFalse"
-      value="false"
-      checked={receptionInter === "false"}
-      onChange={(e) => setReceptionInter(e.target.value)}
-    />
-  </div>
-</div> */}
-
-
-        
+   
         
         <div className="row col-md-3 mb-3 me-2">
           <label htmlFor="dateInter">Date</label>

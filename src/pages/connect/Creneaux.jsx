@@ -67,11 +67,6 @@ const Creneaux = () => {
             <Creneaubadclosed creneau={creneau} key={creneau.id} />
             );
             })}
-
-
-
-
-          
         </div>  
       </div>
     </main>

@@ -183,6 +183,7 @@ fetch("http://localhost:3002/clubs", {
         
         setTimeout(() => {
           setIsClubDeletedMessageVisible(false);
+          navigate(0);
         }, 2000);
         
       })

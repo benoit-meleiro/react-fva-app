@@ -1,6 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Compomatch = ({club}) => {
+const Compomatch = props => {
+const { club } = props
+  const navigate = useNavigate();
+  const [isClubUpdated, setClubUpdated] = useState(false);
+
 const jwt = localStorage.getItem("jwt");
 const [presentInterData, setPresentInterData] = useState([]);
   useEffect(() => {
@@ -25,21 +30,68 @@ const [presentInterData, setPresentInterData] = useState([]);
       const date = new Date(dateString);
       return date.toLocaleDateString('fr-FR', options);
     };
-    // const GymnaseSession = (dayOfWeek) => {
-    //   if (dayOfWeek === 'lun' || dayOfWeek === 'mar') {
-    //     return 'Gymnase G Tillion 21h - 23h';
-    //   } 
-    //   if (dayOfWeek === 'mer') {
-    //     return 'Gymnase G Tillion 20h30 - 22h30';
-    //   } 
-    //   if (dayOfWeek === 'jeu') {
-    //     return 'Gymnase P Denis 21h - 23h';
-    //   }  
-    //   else {
-    //      return 'Gymnase P Denis 19h - 21h';
-    //   }
-    // };
-  // const dayOfWeek = formatDate(creneau.dateSession).substring(0, 3); // Récupère le jour de la semaine en 3 caractères
+
+    const handleSubmit = (event) => {
+    
+      event.preventDefault();
+      
+      const equipe = event.target.equipe.value;
+      const numeroMatch = event.target.numeroMatch.value;
+      const dateInter =  event.target.dateInter.value;
+      const jourInter = event.target.jourInter.value;
+      const heureInter =  event.target.heureInter.value;
+      const receptionInter =  event.target.receptionInter.value;
+      const adversaireInter =  event.target.adversaireInter.value;
+      const lieuInter =  event.target.lieuInter.value;    
+      const joueursDisposEq = event.target.joueursDisposEq.value;
+      const joueursNonDisposEq = event.target.joueursNonDisposEq.value;
+      const joueurSh1 = event.target.joueurSh1.value;
+      const joueurSh2 = event.target.joueurSh2.value;
+      const joueurSd = event.target.joueurSd.value;
+      const joueur1Dh = event.target.joueur1Dh.value;
+      const joueur2Dh = event.target.joueur2Dh.value;
+      const joueur1Dd = event.target.joueur1Dd.value;
+      const joueur2Dd = event.target.joueur2Dd.value;
+      const joueur1Dm1 = event.target.joueur1Dm1.value;
+      const joueur2Dm1 = event.target.joueur2Dm1.value;
+      const joueur1Dm2 = event.target.joueur1Dm2.value;
+      const joueur2Dm2 = event.target.joueur2Dm2.value;
+      console.log(event.target.dateInter.value);
+      const jwt = localStorage.getItem("jwt");
+      fetch(`http://localhost:3002/clubs/${club.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}`, // Ajouter le JWT au header "Authorization"
+        },
+        body: JSON.stringify(
+       
+          {
+            equipe,  numeroMatch,  dateInter,
+            jourInter, heureInter, receptionInter,
+            adversaireInter, lieuInter, joueursDisposEq,
+            joueursNonDisposEq, joueurSh1, joueurSh2,
+            joueurSd, joueur1Dh, joueur2Dh,
+            joueur1Dd, joueur2Dd, joueur1Dm1,
+            joueur2Dm1, joueur1Dm2, joueur2Dm2,} )                  
+        })
+      
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("Club modifié");
+          setClubUpdated(true);
+          setTimeout(() => {
+            navigate("/espace/compointerclub");
+          }, 2000); // Redirige après 2 secondes
+          
+          // sinon on affiche un message d'erreur
+          // car cela veut dire que le coworking n'a pas été créé
+        } else {
+          console.log("erreur");
+        }
+      });
+    };
+    
   const recDep= club.receptionInter == true ? "Domicile" : "Déplacement";
   
       return (
@@ -51,7 +103,7 @@ const [presentInterData, setPresentInterData] = useState([]);
         <p className="text-white fw-normal text-center">{club.heureInter} - {club.lieuInter}</p>
         <h3 className="text-white text-center text-uppercase my-2">JOUEURS disponibles</h3>
         <div className=" d-flex flex-row  flex-wrap justify-content-around text-white">
-          <div className="row justify-content-center text-white gap-1">
+          <div className="row justify-content-center text-white gap-1 min-inter">
             
             {presentInterData.map((present) =>
             (
@@ -64,145 +116,110 @@ const [presentInterData, setPresentInterData] = useState([]);
             
         </div>
         </div>
-        <h3 className="text-white text-center text-uppercase my-1">sélection des joueurs</h3>
-        <div className="separator"></div>
-        <div className="d-flex flex-row flex-wrap justify-content-start align-items-center gap-2">
-        {/* <!-- SIMPLE HOMME 1    --> */}
-          <div className="d-flex flex-row col-12 col-sm-12 col-md-12 col-lg-12">
-            <p className="col-3 text-center fs-6 text-white text-uppercase fw-semibold lh-1">simple<br/>homme 1</p>
-            <p className="col-4">
-              <label htmlFor="pet-select"></label>
-              <select  className="team-player-select" name="pets" id="pet-select">
-                  <option value=""></option>
-                  <option value="joueur 1">Jean-Luc</option>
-                  <option value="joueur 2">Stéphane</option>
-                  <option value="joueur 3">Wilfrid</option>
-                  <option value="joueur 4">Yann</option>
-              </select>
-            </p>
-            <p className="col-4"></p>
-          </div>    
-        {/* <!-- SIMPLE HOMME 2    -->     */}
-          <div className="d-flex flex-row col-12 col-sm-12 col-md-12 col-lg-12">
-            <p className="col-3 text-center fs-6 text-white text-uppercase fw-semibold lh-1">simple<br/>homme 2</p>
-            <p className="col-4">
-              <label htmlFor="pet-select"></label>
-              <select  className="team-player-select" name="pets" id="pet-select">
-                <option value=""></option>
-                <option value="joueur 1">Jean-Luc</option>
-                <option value="joueur 2">Stéphane</option>
-                <option value="joueur 3">Wilfrid</option>
-                <option value="joueur 4">Yann</option>
-            </select>
-            </p>
-            <p className="col-4"></p>
-          </div>
-        {/* <!-- SIMPLE DAME    -->   */}
-          <div className="d-flex flex-row col-12 col-sm-12 col-md-12 col-lg-12">
-            <p className="col-3 text-center fs-6 text-white text-uppercase fw-semibold lh-1">simple<br/>dame</p>
-            <p className="col-4">
-              <label htmlFor="pet-select"></label>
-              <select  className="team-player-select" name="pets" id="pet-select">
-                <option value=""></option>
-                <option value="joueur 1">Cécile</option>
-                <option value="joueur 2">Sabrina</option>
-                <option value="joueur 3">Stéphanie</option>
-              </select>
-            </p>
-            <p className="col-4"></p>
-          </div>
-        {/* <!-- DOUBLE HOMME    -->   */}
-          <div className="d-flex flex-row col-12 col-sm-12 col-md-12 col-lg-12">
-            <p className="col-3 text-center fs-6 text-white text-uppercase fw-semibold lh-1">double<br/>homme</p>
-            <p className="col-4">
-              <label htmlFor="pet-select"></label>
-              <select  className="team-player-select" name="pets" id="pet-select">
-                <option value=""></option>
-                <option value="joueur 1">Jean-Luc</option>
-                <option value="joueur 2">Stéphane</option>
-                <option value="joueur 3">Wilfrid</option>
-                <option value="joueur 4">Yann</option>
-            </select>
-            </p>
-            <p className="col-4">
-              <label htmlFor="pet-select"></label>
-              <select  className="team-player-select" name="pets" id="pet-select">
-                <option value=""></option>
-                <option value="joueur 1">Jean-Luc</option>
-                <option value="joueur 2">Stéphane</option>
-                <option value="joueur 3">Wilfrid</option>
-                <option value="joueur 4">Yann</option>
-            </select>
-            </p>
-          </div>
-        {/* <!-- DOUBLE DAME    -->   */}
-          <div className="d-flex flex-row col-12 col-sm-12 col-md-12 col-lg-12">
-            <p className="col-3 text-center fs-6 text-white text-uppercase fw-semibold lh-1">double<br/>dame</p>
-            <p className="col-4">
-              <label htmlFor="pet-select"></label>
-              <select  className="team-player-select" name="pets" id="pet-select">
-                <option value=""></option>
-                <option value="joueur 1">Cécile</option>
-                <option value="joueur 2">Sabrina</option>
-                <option value="joueur 3">Stéphanie</option>
-              </select>
-            </p>
-            <p className="col-4">
-              <label htmlFor="pet-select"></label>
-              <select  className="team-player-select" name="pets" id="pet-select">
-                <option value=""></option>
-                <option value="joueur 1">Cécile</option>
-                <option value="joueur 2">Sabrina</option>
-                <option value="joueur 3">Stéphanie</option>
-              </select>
-            </p>
-          </div>
-        {/* <!-- DOUBLE MIXTE 1    -->   */}
-          <div className="d-flex flex-row col-12 col-sm-12 col-md-12 col-lg-12">
-            <p className="col-3 text-center fs-6 text-white text-uppercase fw-semibold lh-1">double<br/>Mixte 1</p>
-            <p className="col-4">
-              <label htmlFor="pet-select"></label>
-              <select  className="team-player-select" name="pets" id="pet-select">
-                <option value=""></option>
-                <option value="joueur 1">Jean-Luc</option>
-                <option value="joueur 2">Stéphane</option>
-                <option value="joueur 3">Wilfrid</option>
-                <option value="joueur 4">Yann</option>
-            </select>
-            </p>
-            <p className="col-4">
-              <label htmlFor="pet-select"></label>
-              <select  className="team-player-select" name="pets" id="pet-select">
-                <option value=""></option>
-                <option value="joueur 1">Cécile</option>
-                <option value="joueur 2">Sabrina</option>
-                <option value="joueur 3">Stéphanie</option>
-              </select>
-            </p>
-          </div>
-        {/* <!-- DOUBLE MIXTE 2    -->   */}
-          <div className="d-flex flex-row col-12 col-sm-12 col-md-12 col-lg-12">
-            <p className="col-3 text-center fs-6 text-white text-uppercase fw-semibold lh-1">double<br/>mixte 2</p>
-            <p className="col-4">
-              <label htmlFor="pet-select"></label>
-              <select  className="team-player-select" name="pets" id="pet-select">
-                <option value=""></option>
-                <option value="joueur 1">Jean-Luc</option>
-                <option value="joueur 2">Stéphane</option>
-                <option value="joueur 3">Wilfrid</option>
-                <option value="joueur 4">Yann</option>
-            </select>
-            </p>
-            <p className="col-4">
-              <label htmlFor="pet-select"></label>
-              <select  className="team-player-select" name="pets" id="pet-select">
-                <option value=""></option>
-                <option value="joueur 1">Cécile</option>
-                <option value="joueur 2">Sabrina</option>
-                <option value="joueur 3">Stéphanie</option>
-              </select>
-            </p>
-          </div>
+        <h3 className="text-white text-center text-uppercase mt-2 mb-3">sélection des joueurs</h3>
+        
+        <div className="d-flex flex-row flex-wrap justify-content-center align-items-center gap-2">
+        <form onSubmit={handleSubmit} className="row  px-4 g-3 justify-content-center align-items-center">
+        {/* <form  className="row  px-4 g-3"> */}
+        
+        <div className="d-none row col-md-3 mb-3 me-2">
+        <label htmlFor="equipe" className="px-0">Equipe</label>
+        <input type="number" className="form-control" name="equipe" defaultValue={club?.equipe}/>
+      </div>
+        
+        <div className="d-none row col-md-3 mb-3 me-2">
+          <label htmlFor="numeroMatch" className="px-0">Numéro du match</label>
+          <input type="number" className="form-control" name="numeroMatch" defaultValue={club?.numeroMatch}/>
+        </div>
+       
+        <div className="d-none row col-md-3 mb-3 me-2 justify-content-around">
+        <label htmlFor="receptionInter" className="px-0">Réception (1) ou déplacement(0)</label>
+          <input type="text" className="form-control" name="receptionInter" defaultValue={club?.receptionInter}/>
+        </div>
+   
+        
+        <div className="d-none row col-md-3 mb-3 me-2">
+          <label htmlFor="dateInter">Date</label>
+          <input type="date" id="start" name="dateInter"  min="2022-09-01" max="2024-12-31" defaultValue={club?.dateInter} />
+        </div>
+        
+        <div className="d-none row col-md-3 mb-3 me-2">
+          <label htmlFor="heureInter" className="px-0">Heure</label>
+          <input type="text" className="form-control" name="heureInter" defaultValue={club?.heureInter}/>
+        </div>
+        
+        <div className="d-none row col-md-3 mb-3 me-2">
+          <label htmlFor="adversaireInter" className="px-0">Adversaire</label>
+          <input type="text" className="form-control" name="adversaireInter" defaultValue={club?.adversaireInter}/>
+        </div>
+        
+        <div className="d-none row col-md-3 mb-3 me-2">
+          <label htmlFor="lieuInter" className="px-0">Lieu</label>
+          <input type="text" name="lieuInter" className="form-control" defaultValue={club?.lieuInter}/>
+        </div>
+
+        <div className="d-none d-none row col-md-3 mb-3 me-2">
+          <label htmlFor="joueursDisposEq" className="px-0">joueurs dispos</label>
+          <input type="text" name="joueursDisposEq" className="form-control" defaultValue={club?.joueursDisposEq}/>
+        </div>
+
+        <div className="d-none row col-md-3 mb-3 me-2">
+          <label htmlFor="joueursNonDisposEq" className="px-0">Joueurs non dispos</label>
+          <input type="text" name="joueursNonDisposEq" className="form-control" defaultValue={club?.joueursNonDisposEq}/>
+        </div> 
+        <div className=" row col-5 col-sm-5 col-md-5 col-lg-5 mb-3 me-2">
+          <label htmlFor="joueurSh1" className="px-0 text-white">Simple Homme 1</label>
+          <input type="text" name="joueurSh1"  className=" bg-fva-bleu fwq-bold form-control" defaultValue={club?.joueurSh1}/>
+        </div> 
+        <div className=" row col-5 col-sm-5 col-md-5 col-lg-5 mb-3 me-2">
+          <label htmlFor="joueurSh2" className="px-0 text-white">Simple Homme 2</label>
+          <input type="text" name="joueurSh2" className=" bg-fva-bleu fwq-bold form-control" defaultValue={club?.joueurSh2}/>
+        </div> 
+        <div className=" row col-8 col-sm-8 col-md-8 col-lg-8 mb-3 me-2">
+          <label htmlFor="joueurSd" className="px-0 text-white">Simple Dame</label>
+          <input type="text" name="joueurSd" className=" bg-fva-bleu fwq-bold form-control" defaultValue={club?.joueurSd}/>
+        </div> 
+        <div className="row col-5 col-sm-5 col-md-5 col-lg-5 mb-3 me-2">
+          <label htmlFor="joueur1Dh" className="px-0 text-white">Joueur 1 Double Hommes</label>
+          <input type="text" name="joueur1Dh" className=" bg-fva-bleu fwq-bold form-control" defaultValue={club?.joueur1Dh}/>
+        </div> 
+        <div className="row col-5 col-sm-5 col-md-5 col-lg-5 mb-3 me-2">
+          <label htmlFor="joueur2Dh" className="px-0 text-white">Joueur 2 Double Hommes</label>
+          <input type="text" name="joueur2Dh" className=" bg-fva-bleu fwq-bold form-control" defaultValue={club?.joueur2Dh}/>
+        </div> 
+        <div className="row col-5 col-sm-5 col-md-5 col-lg-5 mb-3 me-2">
+          <label htmlFor="joueur1Dd" className="px-0 text-white">Joueur 1 Double Dames</label>
+          <input type="text" name="joueur1Dd" className=" bg-fva-bleu fwq-bold form-control" defaultValue={club?.joueur1Dd}/>
+        </div> 
+        <div className="row col-5 col-sm-5 col-md-5 col-lg-5 mb-3 me-2">
+          <label htmlFor="joueur2Dd" className="px-0 text-white">Joueur 2 Double Dames</label>
+          <input type="text" name="joueur2Dd" className=" bg-fva-bleu fwq-bold form-control" defaultValue={club?.joueur2Dd}/>
+        </div> 
+        <div className="row col-5 col-sm-5 col-md-5 col-lg-5 mb-3 me-2">
+          <label htmlFor="joueur1Dm1" className="px-0 text-white">Joueur 1 Double Mixte 1</label>
+          <input type="text" name="joueur1Dm1" className=" bg-fva-bleu fwq-bold form-control" defaultValue={club?.joueur1Dm1}/>
+        </div> 
+        <div className="row col-5 col-sm-5 col-md-5 col-lg-5 mb-3 me-2">
+          <label htmlFor="joueur2Dm1" className="px-0 text-white">Joueur 2 Double Mixte 1</label>
+          <input type="text" name="joueur2Dm1" className=" bg-fva-bleu fwq-bold form-control" defaultValue={club?.joueur2Dm1}/>
+        </div> 
+        
+        <div className="row col-5 col-sm-5 col-md-5 col-lg-5 mb-3 me-2">
+          <label htmlFor="joueur1Dm2" className="px-0 text-white">Joueur 1 Double Mixte 2</label>
+          <input type="text" name="joueur1Dm2" className=" bg-fva-bleu fwq-bold form-control" defaultValue={club?.joueur1Dm2}/>
+        </div> 
+        <div className="row col-5 col-sm-5 col-md-5 col-lg-5 mb-3 me-2">
+          <label htmlFor="joueur2Dm2" className="px-0 text-white">Joueur 2 Double Mixte 2</label>
+          <input type="text" name="joueur2Dm2" className=" bg-fva-bleu fwq-bold form-control" defaultValue={club?.joueur2Dm2}/>
+        </div> 
+        <div className="d-none row col-md-3 mb-3 me-2">
+          <label htmlFor="jourInter" className="px-0">jourInter</label>
+          <input type="text" name="jourInter" className=" bg-fva-bleu fwq-bold form-control" defaultValue={club?.jourInter}/>
+        </div>        
+        <div className="row col-12 col-sm-12 col-md-12 col-lg-12 mb-3 me-2">
+        <button type="submit" className="btn btn-fva-rouge">Composer l'équipe</button>
+        </div>
+      </form>
         </div>
       </div>
   );

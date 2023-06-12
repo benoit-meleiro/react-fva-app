@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from '../img/logo-fva-navbar-footer.svg'
+import CompteurPoint from "../pages/noConnect/CompteurPoint";
 
 const Footer = () => {
   return (
@@ -14,7 +15,7 @@ const Footer = () => {
               <Link className="d-inline-block px-5 text-decoration-none  text-dark"  to={`/`}>Mentions Légales</Link>
               <Link className="d-inline-block px-5 text-decoration-none text-dark" to={`/`}>Statuts</Link>
               <Link className="d-inline-block px-5 text-decoration-none text-dark" to={`/`}>Réglement Intérieur</Link>
-              <Link className="d-inline-block px-5 text-decoration-none text-dark" to={`/`}>Compteur points</Link>
+              <Link className="d-inline-block px-5 text-decoration-none text-dark" to={`/compteur-points`}>Compteur de points</Link>
               <Link className="d-inline-block px-5 text-decoration-none text-dark" to={`/`}>FAQ</Link>
           </div>
         </div>
