@@ -15,20 +15,15 @@ const Playercrud = () => {
   const [isPlayerDeleted, setIsPlayerDeleted] = useState(false);
   const [playersData, setPlayersData] = useState([]);
 
-  // je récupère la fonction navigate du react router
+  
   const navigate = useNavigate();
- 
 
-  // je fais l'appel fetch vers l'url de mon api (qui est en local)
-  // et qui renvoie un json contenant la liste des players en BDD
-  // quand l'appel est terminé, je stocke les données récupérées
-  // dans le state, ce qui force mon composant à se recharger
   const jwt = localStorage.getItem("jwt");
   useEffect(() => {
     fetch("http://localhost:3002/players", {
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+      "Authorization": `Bearer ${jwt}` 
     },
     body: JSON.stringify(),})
       .then((playersDataJson) => {
@@ -47,10 +42,9 @@ const Playercrud = () => {
 
 //* FONCTION POUR LE CREATE
 const handleSubmit = (event) => {
-    // on empêche la page de recharcher le formulaire
+   
   event.preventDefault();
-  // je récupère les valeurs des champs du formulaire
-  
+   
   const firstName = event.target.firstName.value;
   const lastName = event.target.lastName.value;
   const sexe = event.target.sexe.value;
@@ -84,29 +78,19 @@ const handleSubmit = (event) => {
           photos: photos || defaultValues.photos,
         };
 
-  // })
-    // on fait un appel vers l'API (express)
-  // on lui spécifie la méthode POST (pour créer)
-  // et on lui passe en "body" les données du formulaire
-  // attention, il faut que les données soient au format JSON
-  // donc on utilise JSON.stringify
-  // il faut que les donnnées envoyées correspondent
-  // à ce qui est attendu par l'API
+
   const jwt = localStorage.getItem("jwt");
 
   fetch("http://localhost:3002/players", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+      "Authorization": `Bearer ${jwt}` 
     },
     body: JSON.stringify(),
     body: JSON.stringify(requestBody),
           })
 
-    // si l'api renvie une reponse 200
-    // ça veut dire que tout s'est bien passé
-    // alors on affiche un message dans la console
   .then((response) => {
     if (response.status === 200) {
       console.log("Player crée");
@@ -117,9 +101,6 @@ const handleSubmit = (event) => {
         navigate(0);
       }, 2000);
       
-      
-      // sinon on affiche un message d'erreur
-      // car cela veut dire que le coworking n'a pas été créé
     } else {
       console.log("erreur");
     }
@@ -130,27 +111,18 @@ const handleSubmit = (event) => {
 
 // * FONCTION POUR LE DELETE
   const handleDeleteClick = (player) => {
-    // const token = localStorage.getItem("jwt");
-
-    // je fais un appel fetch vers l'url de mon api avec la méthode DELETE
-    // et je passe l'id du coworking à supprimer en paramètre de l'url
+  
     const jwt = localStorage.getItem("jwt");
     fetch("http://localhost:3002/players/" + player.id, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+        "Authorization": `Bearer ${jwt}` 
       },
       body: JSON.stringify(),
-      // si l'url de mon api nécessite une authentification
-      // je lui passe le JWT stocké en localStorage dans le header
-      // de la requête
-      // headers: {
-      //   Authorization: `Bearer ${token}`,
-      // },
+  
     })
-      // quand le fetch est terminé, je recharge la page actuelle grâce
-      // à la fonction navigate du react router
+    r
       .then(() => {
         console.log("Player supprimé");
         setIsPlayerDeleted(true);

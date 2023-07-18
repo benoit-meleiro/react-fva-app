@@ -10,26 +10,17 @@ import RequireAuth from "../../component/RequireAuth";
 
 
 const Creneaux = () => {
-  // créé un state creneauxData pour pouvoir stocker les données récupérées
-  // depuis l'API, à savoir la liste des creneaux
-  // par défaut (donc au premier chargement du composant), le state
-  // contient un tableau vide
+  
   const [creneauxData, setCreneauxData] = useState([]);
 
-  // je récupère la fonction navigate du react router
   const navigate = useNavigate();
-
-  // je fais l'appel fetch vers l'url de mon api (qui est en local)
-  // et qui renvoie un json contenant la liste des creneaux en BDD
-  // quand l'appel est terminé, je stocke les données récupérées
-  // dans le state, ce qui force mon composant à se recharger
   const jwt = localStorage.getItem("jwt");
   useEffect(() => {
     fetch("http://localhost:3002/sessions",{
      
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+        "Authorization": `Bearer ${jwt}`
       },
       body: JSON.stringify(),
             })

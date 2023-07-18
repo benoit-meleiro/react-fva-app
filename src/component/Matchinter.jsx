@@ -17,7 +17,7 @@ const Matchinter = ({club}) => {
       fetch(`http://localhost:3002/clubs/${club.id}/presentinter`,{
         headers: {
               "Content-Type": "application/json",
-              "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+              "Authorization": `Bearer ${jwt}` 
               },
         body: JSON.stringify(),
                   })
@@ -118,7 +118,7 @@ const removePlayerPrez = () => {
       method: "DELETE",
       headers: {
                   "Content-Type": "application/json",
-                  "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+                  "Authorization": `Bearer ${jwt}` 
                 },
       body: JSON.stringify(
                   {

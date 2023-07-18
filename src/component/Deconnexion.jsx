@@ -34,10 +34,9 @@ const Deconnexion = () => {
     }, []);
         
     const deconnexion = () => {
-        // Supprimer le JWT du localStorage
+        
         localStorage.removeItem("jwt");
         
-        // Redirection vers la page de connexion ou une autre page appropriée
         navigate("/login");
       };
 

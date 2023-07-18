@@ -13,40 +13,37 @@ const Updatecreneau = () => {
 
   const navigate = useNavigate();
   const [isCreneauUpdated, setCreneauUpdated] = useState(false);
-  // je créé un state pour stocker un interclub
+  
   const [creneau, setCreneau] = useState(null);
-//* bouton radio
+
+
 const [disponibiliteSession, setDisponibiliteSession] = useState(creneau?.disponibiliteSession || true);
 const [matchsInterclubs, setMatchsInterclubs] = useState(creneau?.matchsInterclubs || true);
-  // je récupère l'id présent dans l'url
+  
   const { id } = useParams();
 
-  // j'utilise useEffect, pour executer l'appel à l'api
-  // une seule fois, au chargement du composant
+  
   useEffect(() => {
-    // je fais un appel fetch, vers l'url de l'api pour récupérer
-    //  un coworking en fonction de l'id présent dans l'url
+    
     const jwt = localStorage.getItem("jwt");
     fetch(`http://localhost:3002/sessions/${id}`,{
       headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+            "Authorization": `Bearer ${jwt}` 
             },
       body: JSON.stringify(),
                 })
       .then((responseJson) => responseJson.json())
       .then((responseJs) => {
-        // si j'ai une réponse de l'api, je stocke le coworking
-        // renvoyé dans le state
+       
         setCreneau(responseJs.data);
         setDisponibiliteSession(responseJs.data?.disponibiliteSession === 0 ? false : true);
       });
   }, [id]);
 
-  // je créé un event listener quand le formulaire est validé
+  
   const handleSubmit = (event) => {
-    // j'utilise l'objet event, fourni automatiquement par le navigateur
-    // pour empêcher que la page soit rechargée (comportement par défaut)
+    
     event.preventDefault();
     
     const dateSession = event.target.dateSession.value;
@@ -60,7 +57,7 @@ const [matchsInterclubs, setMatchsInterclubs] = useState(creneau?.matchsInterclu
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${jwt}`, // Ajouter le JWT au header "Authorization"
+        "Authorization": `Bearer ${jwt}`, 
       },
       body: JSON.stringify(
      
@@ -83,10 +80,7 @@ const [matchsInterclubs, setMatchsInterclubs] = useState(creneau?.matchsInterclu
         setCreneauUpdated(true);
         setTimeout(() => {
           navigate("/espace/admin/sessions");
-        }, 2000); // Redirige après 2 secondes
-        
-        // sinon on affiche un message d'erreur
-        // car cela veut dire que le coworking n'a pas été créé
+        }, 2000); 
       } else {
         console.log("erreur");
       }

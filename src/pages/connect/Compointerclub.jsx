@@ -18,7 +18,7 @@ const Compointerclub = () => {
     fetch("http://localhost:3002/clubs",{
       headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+            "Authorization": `Bearer ${jwt}` 
             },
       body: JSON.stringify(),
                 })
@@ -91,7 +91,7 @@ if (playerInfo?.joueur_interclubs) {
           if (club.equipe == PlayerEquip) {
             return <Compomatch club={club} key={club.id} />;
           }
-          return null; // Ignorer les matchs des autres équipes
+          return null; 
         })}
 
 

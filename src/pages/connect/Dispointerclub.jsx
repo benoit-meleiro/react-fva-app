@@ -95,7 +95,7 @@ const Captain = PlayerEquip == 1 ? (<><img src="/img/Jean_Tourloupe.jpg" alt="ic
           if (club.equipe == PlayerEquip) {
             return <Matchinter club={club}  key={club.id} />;
           }
-          return null; // Ignorer les matchs des autres équipes
+          return null; 
         })}
         
         

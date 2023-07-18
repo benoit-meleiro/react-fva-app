@@ -7,67 +7,13 @@ import jwt_decode from "jwt-decode";
 
 const BadParticipation = ({creneau}) => {
 
-// // ! APPEL DE TABLEAU PRESENCE BY ID DU CRENEAU POUR AVOIR TOUS LES PRESENTS    
-
-//     const jwt = localStorage.getItem("jwt");
-
-//     const [presentsData, setpresentsData] = useState([]);
-
-//   useEffect(() => {
-//     fetch(`http://localhost:3002/sessions/${creneau.id}/present`,{
-//       headers: {
-//             "Content-Type": "application/json",
-//             "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
-//             },
-//       body: JSON.stringify(),
-//                 })
-//       .then((presentsDataJson) => {
-//         return presentsDataJson.json();
-//       })
-//       .then((presentsDataJs) => {
-//         setpresentsData(presentsDataJs.data);
-        
-//       });
-//   }, []);
-
-// // ! APPEL POUR AVOIR ID DU USER
-
-//     const navigate = useNavigate();
-//     const [playerInfo, setPlayerInfo] = useState(null);
-
-//     useEffect (() => {
-//       const jwtToken = localStorage.getItem("jwt");
-//       const decodedToken = jwt_decode(jwtToken);
-//       const userId = decodedToken ? decodedToken.data : null;
-//       console.log(jwtToken)
-//       console.log(decodedToken)
-//       console.log(decodedToken.data)
-//       console.log(userId)
-      
-//       fetch(`http://localhost:3002/players/${userId}`, {
-//         headers: {
-//           Authorization: `Bearer ${jwtToken}`,
-//         },
-//         body: JSON.stringify(),})
-//         .then((playerInfoDataJson) => {
-//           return playerInfoDataJson.json();
-//         })
-//         .then((playersDataJs) => {
-//           setPlayerInfo(playersDataJs.data);
-          
-//         })
-//         .catch((error) => {
-//           console.log(error);
-//         });
-      
-//     }, []);
 
    // ? FONCTION POUR CREER LE JOuEUR DANS LA BASE DE DONNEES
    
    const createPlayerPrez = ({creneau}) => {
-    //on empêche la page de recharcher le formulaire
+   
     
-  // je récupère les valeurs des champs du formulaire
+  
   console.log(playerInfo.id)
     
     const playerID =  playerInfo.id
@@ -77,7 +23,7 @@ const BadParticipation = ({creneau}) => {
         method: "POST",
         headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+                    "Authorization": `Bearer ${jwt}` 
                   },
         body: JSON.stringify(
                     {
@@ -101,10 +47,6 @@ const BadParticipation = ({creneau}) => {
 };
     
 
-
-
-
-    //! fonction pour controler si id player = id presents
     const presentMessage = presentsData.find((present) => playerInfo?.id === present?.id) ? (
         <div className="mx-auto"><p className="d-inline-block  text-success fs-6 text-center px-2 py-2 fw-bold">Pas d'excuse je serais là</p><button className="d-inline-block btn btn-fva-rouge-bad mx-2">J'annule ma venue</button> 
         </div>

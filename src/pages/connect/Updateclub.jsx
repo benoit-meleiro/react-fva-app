@@ -22,14 +22,13 @@ const Updateclub = () => {
     fetch(`http://localhost:3002/clubs/${id}`,{
       headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+            "Authorization": `Bearer ${jwt}` 
             },
       body: JSON.stringify(),
                 })
       .then((responseJson) => responseJson.json())
       .then((responseJs) => {
-        // si j'ai une réponse de l'api, je stocke le coworking
-        // renvoyé dans le state
+        
         setClub(responseJs.data);
       });
   }, [id]);
@@ -86,10 +85,7 @@ const Updateclub = () => {
         setClubUpdated(true);
         setTimeout(() => {
           navigate("/espace/admin/clubs");
-        }, 2000); // Redirige après 2 secondes
-        
-        // sinon on affiche un message d'erreur
-        // car cela veut dire que le coworking n'a pas été créé
+        }, 2000); 
       } else {
         console.log("erreur");
       }

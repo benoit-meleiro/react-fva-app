@@ -14,7 +14,7 @@ useEffect(() => {
   fetch(`http://localhost:3002/sessions/${creneau.id}/present`,{
     headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+          "Authorization": `Bearer ${jwt}` 
           },
     body: JSON.stringify(),
               })

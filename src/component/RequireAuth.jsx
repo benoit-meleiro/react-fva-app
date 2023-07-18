@@ -9,10 +9,9 @@ const RequireAuth = () => {
     console.log(token)
 
     if (!token) {
-      // Si le token n'existe pas, l'utilisateur n'est pas authentifié
+    
       
-      navigate("/login"); // Rediriger vers la page de connexion
-    }
+      navigate("/login"); 
   }, [navigate]);
 
   return null;

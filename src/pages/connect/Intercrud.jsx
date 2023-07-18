@@ -6,9 +6,8 @@ import Deconnexion from "../../component/Deconnexion";
 import Menuconnex from "../../component/Menuconnex";
 import RequireAuth from "../../component/RequireAuth";
 
-//* récupération de la liste des interclubs
-const Intercrud = () => {
 
+const Intercrud = () => {
 
   //! Message delete
   const [isClubDeletedMessageVisible, setIsClubDeletedMessageVisible] = useState(false);
@@ -18,16 +17,8 @@ const Intercrud = () => {
   const [clubsData, setClubsData] = useState([]);
 
 
-  
-
-  // je récupère la fonction navigate du react router
   const navigate = useNavigate();
- 
 
-  // je fais l'appel fetch vers l'url de mon api (qui est en local)
-  // et qui renvoie un json contenant la liste des clubs en BDD
-  // quand l'appel est terminé, je stocke les données récupérées
-  // dans le state, ce qui force mon composant à se recharger
   const jwt = localStorage.getItem("jwt");
   useEffect(() => {
     fetch("http://localhost:3002/clubs",{
@@ -53,9 +44,8 @@ const Intercrud = () => {
 
 //* FONCTION POUR LE CREATE
 const handleSubmit = (event) => {
-  // on empêche la page de recharcher le formulaire
+  
 event.preventDefault();
-// je récupère les valeurs des champs du formulaire
 
     const equipe = event.target.equipe.value;
     const numeroMatch = event.target.numeroMatch.value;
@@ -79,19 +69,12 @@ event.preventDefault();
     const joueur1Dm2 = "non choisi";
     const joueur2Dm2 = "non choisi";
     
-// })
-  // on fait un appel vers l'API (express)
-// on lui spécifie la méthode POST (pour créer)
-// et on lui passe en "body" les données du formulaire
-// attention, il faut que les données soient au format JSON
-// donc on utilise JSON.stringify
-// il faut que les donnnées envoyées correspondent
-// à ce qui est attendu par l'API
+
 fetch("http://localhost:3002/clubs", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
-    "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+    "Authorization": `Bearer ${jwt}` 
   },
   body: JSON.stringify(
     
@@ -124,9 +107,6 @@ fetch("http://localhost:3002/clubs", {
   ),
         })
 
-  // si l'api renvie une reponse 200
-  // ça veut dire que tout s'est bien passé
-  // alors on affiche un message dans la console
 .then((response) => {
   if (response.status === 200) {
     console.log("Player crée");
@@ -137,9 +117,7 @@ fetch("http://localhost:3002/clubs", {
       navigate(0);
     }, 2000);
     
-    
-    // sinon on affiche un message d'erreur
-    // car cela veut dire que le coworking n'a pas été créé
+ 
   } else {
     console.log("erreur dans la création");
   }
@@ -150,28 +128,18 @@ fetch("http://localhost:3002/clubs", {
 
   // * FONCTION POUR LE DELETE
   const handleDeleteClick = (club) => {
-    // const token = localStorage.getItem("jwt");
-
-    // je fais un appel fetch vers l'url de mon api avec la méthode DELETE
-    // et je passe l'id du coworking à supprimer en paramètre de l'url
+   
     const jwt = localStorage.getItem("jwt");
     fetch("http://localhost:3002/clubs/" + club.id, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+        "Authorization": `Bearer ${jwt}`
       },
       body: JSON.stringify(),
       
-      // si l'url de mon api nécessite une authentification
-      // je lui passe le JWT stocké en localStorage dans le header
-      // de la requête
-      // headers: {
-      //   Authorization: `Bearer ${token}`,
-      // },
     })
-      // quand le fetch est terminé, je recharge la page actuelle grâce
-      // à la fonction navigate du react router
+      
       .then(() => {
         console.log("Interclub supprimé");
         setIsClubDeleted(true);

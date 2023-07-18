@@ -12,7 +12,7 @@ const [presentInterData, setPresentInterData] = useState([]);
     fetch(`http://localhost:3002/clubs/${club.id}/presentinter`,{
       headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${jwt}` // Ajouter le JWT au header "Authorization"
+            "Authorization": `Bearer ${jwt}` 
             },
       body: JSON.stringify(),
                 })
@@ -82,10 +82,8 @@ const [presentInterData, setPresentInterData] = useState([]);
           setClubUpdated(true);
           setTimeout(() => {
             navigate("/espace/compointerclub");
-          }, 2000); // Redirige après 2 secondes
-          
-          // sinon on affiche un message d'erreur
-          // car cela veut dire que le coworking n'a pas été créé
+          }, 2000); 
+                    
         } else {
           console.log("erreur");
         }
